@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/*
+**Author: Víctor Hugo Escareño Crespo
+*/
+.personal {
+  padding: 15px 0; }
+
+.personal__container {
+  background-color: #ebebeb;
+  margin: 20px 0;
+  border-radius: 15px; }
+
+.personal__photo {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 50%;
+  border: 3px solid #1f8acc; }
+
+.personal__header {
+  color: #1f8acc;
+  font-size: 1.50rem;}
+
+.personal__info {
+  list-style: none; }
+
+.training {
+  padding: 15px 0; }
+
+.training__container {
+  background-color: #fff;
+  margin: 20px 0; }
+
+.training__header {
+  font-size: 1.50rem;
+  border-bottom: 2px solid #1f8acc;
+  cursor: pointer;}
+
+.training__info {
+  list-style: none; }
+
+.important-info {
+  padding: 35px 0; }
+
+.important-info__name {
+  margin-bottom: 15px; }
+
+.important-info__goal {
+  font-size: 1.3rem; }
+
+.progress_week{
+  display: none;
+}

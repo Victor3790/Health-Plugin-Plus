@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/*
+**Author: Víctor Hugo Escareño Crespo
+*/
+.follow-up__form {
+  padding: 30px 40px; }
+
+.follow-up__input {
+  width: 90% !important;
+  padding: 8px !important; }
+
+.follow-up__input--short {
+  margin-right: 10px !important;
+  width: 150px !important;
+  padding: 8px !important;
+  float: left;
+}
+
+.follow-up__input-units{
+  /*float:left;*/
+  margin-top: 8px;
+}
+
+.follow-up__label {
+  margin-top: 30px;
+}
+
+.follow-up__label::after{
+  content: "\A";
+}
+
+.follow-up__fieldset{
+  width: 90%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 1px solid #969696;
+}
+
+.form__button{
+  margin-top: 30px;
+}
