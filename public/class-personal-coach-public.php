@@ -61,6 +61,8 @@ class Personal_Coach_Public {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_admin.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer_registration.php';
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_customer_view_loader.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_admin_view_loader.php';

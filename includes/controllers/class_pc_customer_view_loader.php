@@ -44,11 +44,8 @@ class Personal_Coach_Customer_View
     }
 
     $user_id     = get_current_user_id();
-
     $customer    = new Pc_Customer( $user_id, 2 );
-
     $user_info   = $customer->pc_get_customer_info();
-
     $user_weights = $customer->pc_get_customer_progress();
 
     ob_start();

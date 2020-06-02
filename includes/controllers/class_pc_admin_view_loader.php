@@ -10,11 +10,14 @@ class Personal_Coach_Admin_View
 
   private $admin;
 
+  private $customer_registration;
+
   public function __construct( $url_file_view, $plugin_name )
   {
     $this->plugin_name = $plugin_name;
     $this->url_file = $url_file_view;
     $this->admin = new Pc_Admin;
+    $this->customer_registration = new Pc_Customer_Registration;
   }
 
   public function pc_create_admin_view(){
