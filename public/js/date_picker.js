@@ -2,8 +2,8 @@
   $(document).ready(function(){
 
     $.datepicker.setDefaults( $.datepicker.regional[ 'es' ] );
-    $( '#start_date_view' ).datepicker({
-      altField:  '#start_date',
+    $( '#start-date-view' ).datepicker({
+      altField:  '#start-date',
       altFormat: 'yy-mm-dd'
     });
   });

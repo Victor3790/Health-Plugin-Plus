@@ -85,7 +85,7 @@ class Personal_Coach_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style(
+		wp_register_style(
 			$this->plugin_name . '_bootstrap',
 			plugin_dir_url( __FILE__ ) . 'css/bootstrap.css',
 			array(),
@@ -93,7 +93,7 @@ class Personal_Coach_Public {
 			'all'
 		);
 
-		wp_enqueue_style(
+		wp_register_style(
 			$this->plugin_name . '_customer_view',
 			plugin_dir_url( __FILE__ ) . 'css/customer_view.css',
 			array(),
@@ -101,7 +101,7 @@ class Personal_Coach_Public {
 			'all'
 		);
 
-		wp_enqueue_style(
+		wp_register_style(
 			$this->plugin_name . '_admin_view',
 			plugin_dir_url( __FILE__ ) . 'css/admin_view.css',
 			array(),
@@ -109,7 +109,7 @@ class Personal_Coach_Public {
 			'all'
 		);
 
-		wp_enqueue_style(
+		wp_register_style(
 			$this->plugin_name . '_tab_theme',
 			"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
 		);
@@ -136,7 +136,7 @@ class Personal_Coach_Public {
 		 */
 
 		//Accordion
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_accordion',
 			plugin_dir_url( __FILE__ ) . 'js/accordion.js',
 			array('jquery','jquery-ui-accordion'),
@@ -145,7 +145,7 @@ class Personal_Coach_Public {
 		);
 
 		//Tabs
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_tabs',
 			plugin_dir_url( __FILE__ ) . 'js/tabs.js',
 			array('jquery','jquery-ui-tabs'),
@@ -154,7 +154,7 @@ class Personal_Coach_Public {
 		);
 
 		//DatePicker
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_date_picker',
 			plugin_dir_url( __FILE__ ) . 'js/date_picker.js',
 			array('jquery','jquery-ui-datepicker'),
@@ -163,7 +163,7 @@ class Personal_Coach_Public {
 		);
 
 		//Form validator (jqueryvalidation)
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_form_validator',
 			'https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js',
 			array('jquery'),
@@ -172,16 +172,16 @@ class Personal_Coach_Public {
 		);
 
 		//User registration form validator
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_pc_form_validator',
 			plugin_dir_url( __FILE__ ) . 'js/pc_form_validator.js',
-			array('jquery', 'pc-form-validator'),
+			array('jquery', $this->plugin_name . '_form_validator'),
 			$this->version,
 			true
 		);
 
 		//Calory calculator
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_calory_calculator',
 			plugin_dir_url( __FILE__ ) . 'js/calory_calculator.js',
 			array('jquery'),
@@ -190,7 +190,7 @@ class Personal_Coach_Public {
 		);
 
 		//Google charts
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_google_charts',
 			'https://www.gstatic.com/charts/loader.js',
 			array(),
@@ -198,7 +198,7 @@ class Personal_Coach_Public {
 			true
 		);
 
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_pc_charts',
 			plugin_dir_url( __FILE__ ) . 'js/custom_charts.js',
 			array('jquery', $this->plugin_name . '_google_charts'),
@@ -207,7 +207,7 @@ class Personal_Coach_Public {
 		);
 
 		//Ajax user registration script
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_user_registration',
 			plugin_dir_url( __FILE__ ) . 'js/user_registration.js',
 			array('jquery'),
@@ -224,7 +224,7 @@ class Personal_Coach_Public {
 		);
 
 		//Ajax get user information script
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_admin_view_user_info',
 			plugin_dir_url( __FILE__ ) . 'js/admin_view_user_info.js',
 			array('jquery'),
@@ -241,7 +241,7 @@ class Personal_Coach_Public {
 		);
 
 		//Ajax get user follow up script
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_admin_view_user_follow_up',
 			plugin_dir_url( __FILE__ ) . 'js/admin_view_user_follow_up.js',
 			array('jquery'),
@@ -258,7 +258,7 @@ class Personal_Coach_Public {
 		);
 
 		//Ajax weekly follow up registration script
-		wp_enqueue_script(
+		wp_register_script(
 			$this->plugin_name . '_weekly_follow_up_registration',
 			plugin_dir_url( __FILE__ ) . 'js/weekly_follow_up_registration.js',
 			array('jquery'),
@@ -286,8 +286,14 @@ class Personal_Coach_Public {
 		$customer_view_file		= plugin_dir_url( __FILE__ ) . 'views/pc_customer_view.php';
 		$admin_view_file 			= plugin_dir_url( __FILE__ ) . 'views/pc_admin_view.php';
 
-		$pc_customer_view 		= new Personal_Coach_Customer_View( $customer_view_file );
-		$pc_admin_view		 		= new Personal_Coach_Admin_View( $admin_view_file );
+		$pc_customer_view 		= new Personal_Coach_Customer_View(
+																															$customer_view_file,
+																															$this->plugin_name
+																														);
+		$pc_admin_view		 		= new Personal_Coach_Admin_View(
+																													$admin_view_file,
+																													$this->plugin_name
+																											   );
 
 		add_shortcode(
 			 'personal_coach_customer_view',
