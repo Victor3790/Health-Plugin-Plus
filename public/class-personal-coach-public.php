@@ -219,7 +219,7 @@ class Personal_Coach_Public {
 
 		wp_localize_script(
 			$this->plugin_name . '_user_registration',
-			'ajax_object',
+			'ajax_user_registration_object',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
 			]

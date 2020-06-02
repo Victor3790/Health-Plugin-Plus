@@ -48,7 +48,7 @@
       formData.append( 'action', 'pc_user_registration' );
 
       $.ajax({
-        url:  ajax_object.ajax_url,
+        url:  ajax_user_registration_object.ajax_url,
         type: 'POST',
         data: formData,
         contentType:false,
