@@ -63,6 +63,8 @@ class Personal_Coach_Public {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer_registration.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_ajax_customer.php';
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_customer_view_loader.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_admin_view_loader.php';
@@ -210,50 +212,50 @@ class Personal_Coach_Public {
 
 		//Ajax user registration script
 		wp_register_script(
-			$this->plugin_name . '_user_registration',
-			plugin_dir_url( __FILE__ ) . 'js/user_registration.js',
+			$this->plugin_name . '_customer_registration',
+			plugin_dir_url( __FILE__ ) . 'js/customer_registration.js',
 			array('jquery'),
 			$this->version,
 			true
 		);
 
 		wp_localize_script(
-			$this->plugin_name . '_user_registration',
-			'ajax_user_registration_object',
+			$this->plugin_name . '_customer_registration',
+			'ajax_customer_registration_object',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
 			]
 		);
 
-		//Ajax get user information script
+		//Ajax get customer information script
 		wp_register_script(
-			$this->plugin_name . '_admin_view_user_info',
-			plugin_dir_url( __FILE__ ) . 'js/admin_view_user_info.js',
+			$this->plugin_name . '_admin_view_customer_info',
+			plugin_dir_url( __FILE__ ) . 'js/admin_view_customer_info.js',
 			array('jquery'),
 			$this->version,
 			true
 		);
 
 		wp_localize_script(
-			$this->plugin_name . '_admin_view_user_info',
-			'ajax_user_object',
+			$this->plugin_name . '_admin_view_customer_info',
+			'ajax_customer_info_object',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
 			]
 		);
 
-		//Ajax get user follow up script
+		//Ajax get customer follow up script
 		wp_register_script(
-			$this->plugin_name . '_admin_view_user_follow_up',
-			plugin_dir_url( __FILE__ ) . 'js/admin_view_user_follow_up.js',
+			$this->plugin_name . '_admin_view_customer_follow_up',
+			plugin_dir_url( __FILE__ ) . 'js/admin_view_customer_follow_up.js',
 			array('jquery'),
 			$this->version,
 			true
 		);
 
 		wp_localize_script(
-			$this->plugin_name . '_admin_view_user_follow_up',
-			'ajax_user_object',
+			$this->plugin_name . '_admin_view_customer_follow_up',
+			'ajax_customer_follow_up_object',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
 			]

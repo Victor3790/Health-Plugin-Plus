@@ -26,7 +26,7 @@
 
   <div id="customer_info">
     <h1>Información de usuario</h1>
-    <form id="pc_user_select">
+    <form id="pc_customer_select">
       PC_USERS_INFO
     </form>
     <div>

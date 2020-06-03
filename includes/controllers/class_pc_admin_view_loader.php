@@ -12,12 +12,15 @@ class Personal_Coach_Admin_View
 
   private $customer_registration;
 
+  private $user;
+
   public function __construct( $url_file_view, $plugin_name )
   {
     $this->plugin_name = $plugin_name;
     $this->url_file = $url_file_view;
     $this->admin = new Pc_Admin;
     $this->customer_registration = new Pc_Customer_Registration;
+    $this->user = new Pc_Ajax_Customer;
   }
 
   public function pc_create_admin_view(){
@@ -35,7 +38,9 @@ class Personal_Coach_Admin_View
     wp_enqueue_script( $this->plugin_name . '_calory_calculator' );
     wp_enqueue_script( $this->plugin_name . '_google_charts' );
     wp_enqueue_script( $this->plugin_name . '_pc_charts' );
-    wp_enqueue_script( $this->plugin_name . '_user_registration' );
+    wp_enqueue_script( $this->plugin_name . '_customer_registration' );
+    wp_enqueue_script( $this->plugin_name . '_admin_view_customer_info' );
+    wp_enqueue_script( $this->plugin_name . '_admin_view_customer_follow_up' );
 
     //Customer info view
 
@@ -126,8 +131,8 @@ class Personal_Coach_Admin_View
     ob_start();
     $pc_customers = $this->admin->get_pc_customers();
     ?>
-    <label for="pc_user_info">Selecciona un cliente</label>
-    <select id="pc_user_info" name="pc_user_info" form="pc_user_select" required>
+    <label for="pc_customer_info">Selecciona un cliente</label>
+    <select id="pc_customer_info" name="pc_customer_info" form="pc_customer_select" required>
       <option value="">Selecciona</option>
       <?php foreach( $pc_customers as $pc_customer ): ?>
         <option value="<?php echo $pc_customer->pc_customer_id; ?>">

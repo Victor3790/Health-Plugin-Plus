@@ -1,7 +1,11 @@
 <?php
-/**
- *
- */
+/*
+** This function will get the user info for both the admin view and the user view
+** The $id argument is either the user id or the customer id, this will depend on
+**  whether the function is called from the admin view or the user view
+** The $request argument will be 1 if the request comes from the admin view or
+**  2 if the request comes from the user view
+*/
 class Pc_Customer
 {
 
