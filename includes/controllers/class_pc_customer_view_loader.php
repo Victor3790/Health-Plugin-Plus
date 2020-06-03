@@ -9,8 +9,11 @@ class Personal_Coach_Customer_View
 
   private $url_file;
 
+  private $follow_up_registration;
+
   public function __construct( $url_file_view, $plugin_name )
   {
+    $this->follow_up_registration = new Pc_follow_Up_Registration;
     $this->plugin_name = $plugin_name;
     $this->url_file = $url_file_view;
   }
@@ -27,6 +30,7 @@ class Personal_Coach_Customer_View
     wp_enqueue_script( $this->plugin_name . '_pc_form_validator' );
     wp_enqueue_script( $this->plugin_name . '_google_charts' );
     wp_enqueue_script( $this->plugin_name . '_pc_charts' );
+    wp_enqueue_script( $this->plugin_name . '_weekly_follow_up_registration' );
 
     $customer_view_template  = file_get_contents( $this->url_file, true );
     $pc_customer_info        = $this->echo_customer_info();

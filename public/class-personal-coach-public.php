@@ -65,6 +65,8 @@ class Personal_Coach_Public {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_ajax_customer.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_follow_up_registration.php';
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_customer_view_loader.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_admin_view_loader.php';
@@ -272,7 +274,7 @@ class Personal_Coach_Public {
 
 		wp_localize_script(
 			$this->plugin_name . '_weekly_follow_up_registration',
-			'ajax_user_object',
+			'ajax_follow_up_reg_object',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
 			]

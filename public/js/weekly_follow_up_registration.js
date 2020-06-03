@@ -22,10 +22,10 @@
       formData.append( 'answer_3',    $( '#answer_3' ).val() );
       formData.append( 'answer_4',    $( '#answer_4' ).val() );
       formData.append( 'photo',       photo );
-      formData.append( 'action',      'pc_weekly_follow_up_registration' );
+      formData.append( 'action',      'pc_register_follow_up' );
 
       $.ajax({
-        url:  ajax_object.ajax_url,
+        url:  ajax_follow_up_reg_object.ajax_url,
         type: 'POST',
         data: formData,
         contentType:false,
