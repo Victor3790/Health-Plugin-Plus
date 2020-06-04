@@ -2,23 +2,25 @@
   $(document).ready(function(){
     $( '#pc_user_follow_up' ).change( function() {
 
-      var pc_user_follow_up = {
-        action:     'pc_admin_view_follow_up',
-        pc_user_id: $( '#pc_user_follow_up' ).val()
+      var pc_customer_follow_up = {
+        action:                     'pc_get_follow_up',
+        pc_customer_id_follow_up:   $( '#pc_user_follow_up' ).val()
       }
 
       $.ajax({
         url: ajax_customer_follow_up_object.ajax_url,
-        data: pc_user_follow_up,
+        data: pc_customer_follow_up,
         method: 'POST',
-        success: on_success_user_follow_up,
-        error: on_error_user_follow_up
+        success: on_success_customer_follow_up,
+        error: on_error_customer_follow_up
       });
 
     } );
 
-    function on_success_user_follow_up( user_data ){
-
+    function on_success_customer_follow_up( user_data ){
+      console.log('Success!');
+      console.log(user_data);
+      console.log($( '#pc_user_follow_up' ).val());
       let id = '';
       let q1 = '¿Has tenido dificultes para seguir el plan? ¿Cuáles?';
       let q2 = '¿Algo que te gustaría añadir o cambiar?';
@@ -50,7 +52,7 @@
     }
 
 
-    function on_error_user_follow_up(){
+    function on_error_customer_follow_up(){
       console.log('Could not get the user weekly follow up');
     }
 

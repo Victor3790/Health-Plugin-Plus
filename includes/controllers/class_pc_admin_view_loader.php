@@ -14,6 +14,8 @@ class Personal_Coach_Admin_View
 
   private $user;
 
+  private $follow_up;
+
   public function __construct( $url_file_view, $plugin_name )
   {
     $this->plugin_name = $plugin_name;
@@ -21,6 +23,7 @@ class Personal_Coach_Admin_View
     $this->admin = new Pc_Admin;
     $this->customer_registration = new Pc_Customer_Registration;
     $this->user = new Pc_Ajax_Customer;
+    $this->follow_up = new Pc_Follow_Up;
   }
 
   public function pc_create_admin_view(){
