@@ -9,7 +9,7 @@
 
       var pc_customer_progress = {
         action: 'pc_get_ajax_progress',
-        pc_user_id: $( '#pc_customer_info' ).val()
+        pc_customer_id: $( '#pc_customer_info' ).val()
       }
 
       $('#weights').empty();
@@ -61,7 +61,7 @@
     }
 
     function on_success_customer_progress( customer_progress ){
-
+      console.log(customer_progress);
       customer_progress.forEach((item) => {
         $('#weights').append('<td class="progress_weight">' + item.weight + '</td>');
         $('#weeks').append('<td class="progress_week">' + item.week + '</td>');

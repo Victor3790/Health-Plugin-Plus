@@ -8,7 +8,7 @@
       }
 
       $.ajax({
-        url: ajax_user_object.ajax_url,
+        url: ajax_customer_follow_up_object.ajax_url,
         data: pc_user_follow_up,
         method: 'POST',
         success: on_success_user_follow_up,

@@ -15,11 +15,26 @@ class Pc_Customer
 
   function __construct( $customer_id, $request )
   {
-
     $this->customer_id = $customer_id;
-
     $this->request = $request;
 
+    if( $request == 2 ){
+      $this->customer_id = $this->pc_transform_id();
+    }
+  }
+
+  private function pc_transform_id(){
+    global $wpdb;
+
+    $query = 'SELECT
+               `pc_customer_id`
+               FROM `' . $wpdb->prefix . 'pc_customers_tbl`
+               WHERE `pc_user_id` = ' . $this->customer_id;
+
+    $row = $wpdb->get_results( $query, 'ARRAY_A' );
+    $output = $row[0]['pc_customer_id'];
+
+    return $output;
   }
 
   public function pc_get_customer_info(){
@@ -64,7 +79,7 @@ class Pc_Customer
                JOIN `' . $wpdb->prefix . 'pc_diets_tbl` d
                ON d.id = c.diet ';
 
-
+    //Admin view checks pc_customer_id
     if( $this->request == 1 ){
 
       $where_query = 'WHERE c.pc_customer_id = %d';
@@ -90,9 +105,10 @@ class Pc_Customer
 
       return $output;
 
+    //Customer view checks pc_user_id
     }elseif ( $this->request == 2 ) {
 
-      $where_query = 'WHERE c.pc_user_id = ' . $this->customer_id;
+      $where_query = 'WHERE c.pc_customer_id = ' . $this->customer_id;
 
       $query = $query . $where_query;
 
@@ -120,8 +136,8 @@ class Pc_Customer
       global $wpdb;
 
       $query = 'SELECT
-                 week,
-                 weight
+                 `week`,
+                 `weight`
                  FROM `' . $wpdb->prefix . 'pc_follow_up_tbl`
                  WHERE `user_id` = ' . $this->customer_id;
 
