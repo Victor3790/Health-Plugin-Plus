@@ -7,7 +7,31 @@ class Pc_Admin
 
   public function __construct()
   {
+    add_action( 'wp_ajax_pc_inactivate_customer', array($this, 'pc_inactivate_customer') );
+    add_action( 'wp_ajax_nopriv_pc_inactivate_customer', array($this, 'pc_inactivate_customer') );
+  }
 
+  public function pc_inactivate_customer(){
+    global $wpdb;
+
+    $customer_id = $_POST['pc_customer_id'];
+
+    $update = $wpdb->update(
+                      $wpdb->prefix . 'pc_customers_tbl',
+                      array('active' => false),
+                      array('pc_customer_id' => $customer_id),
+                      array('%d'), array('%d')
+                    );
+
+    if( $update === false ){
+      $output = 'Hubo un error, por favor contacta al administrador.';
+    }elseif ( $update === 0 ) {
+      $output = 'El usuario no existe o ya ha sido inactivado.';
+    }else{
+      $output = 'Cliente inactivado';
+    }
+
+    wp_send_json( $output );
   }
 
   public function get_pc_active_customers(){

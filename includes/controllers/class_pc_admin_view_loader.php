@@ -44,6 +44,7 @@ class Personal_Coach_Admin_View
     wp_enqueue_script( $this->plugin_name . '_customer_registration' );
     wp_enqueue_script( $this->plugin_name . '_admin_view_customer_info' );
     wp_enqueue_script( $this->plugin_name . '_admin_view_customer_follow_up' );
+    wp_enqueue_script( $this->plugin_name . '_inactivate_customer' );
 
     //Customer info view
 

@@ -282,6 +282,23 @@ class Personal_Coach_Public {
 			]
 		);
 
+		//Ajax inactivate customer script
+		wp_register_script(
+			$this->plugin_name . '_inactivate_customer',
+			plugin_dir_url( __FILE__ ) . 'js/inactivate_customer.js',
+			array('jquery'),
+			$this->version,
+			true
+		);
+
+		wp_localize_script(
+			$this->plugin_name . '_inactivate_customer',
+			'ajax_inactivate_customer_object',
+			[
+				'ajax_url' => admin_url( 'admin-ajax.php' )
+			]
+		);
+
 	}
 
 	/**
