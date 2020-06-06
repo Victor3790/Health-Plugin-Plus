@@ -12,11 +12,9 @@
     function add_customers(){
       add_active_customers();
       add_inactive_customers();
-      console.log(refresh_active);
     }
 
     function check_tab( event, ui ){
-      console.log(refresh_active)
       if( ui.newPanel.selector == '#inactive_customers' && refresh_inactive === true ){
         refresh_inactive = false;
         add_inactive_customers();
@@ -141,16 +139,26 @@
             .append('<td>' + item.name + '</td>')
             .append('<td>' + item.mail + '</td>')
             .append('<td>' + item.phone + '</td>')
-            .append('<td class="activate_button"><button value = "' + item.pc_customer_id + '"></button></td>')
+            .append('<td id="inactive_actions_' + item.pc_customer_id + '"></td>')
+        $( '#inactive_actions_' + item.pc_customer_id )
+            .append('<button class="activate_customer" value = "' + item.pc_customer_id + '"></button>')
+            .append('<button class="delete_customer" value = "' + item.pc_customer_id + '"></button>');
       });
 
-      $( '.activate_button > button' )
-          .text( 'Activar' )
-          .addClass( 'activate_customer' )
+      $( '.activate_customer' )
+          .text( 'Activar' );
+      $( '.delete_customer' )
+          .text( 'Eliminar' );
+
 
       $('.activate_customer').one('click', function(){
         let customer_id = $(this).val();
         activate_customer( customer_id );
+      });
+
+      $('.delete_customer').one('click', function(){
+        let customer_id = $(this).val();
+        delete_customer( customer_id );
       });
     }
 
@@ -179,6 +187,34 @@
     function activation_error(){
       alert('Error, consulte al administrador');
     }
+
+    function delete_customer( customer_id ){
+      let pc_customer = {
+        action: 'pc_delete_customer',
+        pc_customer_id: customer_id
+      }
+
+      $.ajax({
+        url: ajax_active_users_object.ajax_url,
+        data: pc_customer,
+        method: 'POST',
+        success: deletion_success,
+        error: deletion_error
+      });
+
+      function deletion_success(result){
+        refresh_active = true;
+        alert(result);
+        $('#inactive_customers > table ').empty();
+        add_inactive_customers();
+      }
+
+      function deletion_error(){
+        alert('Error, consulte al administrador');
+      }
+    }
+
+
 
   });
 })(jQuery);

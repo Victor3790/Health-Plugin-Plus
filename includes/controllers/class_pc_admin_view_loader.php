@@ -52,12 +52,6 @@ class Personal_Coach_Admin_View
     $admin_view_template  = str_replace( 'PC_USERS_INFO',
                                         $pc_users,
                                         $admin_view_template );
-
-    //Customer registration view
-    /*$active_customers     = $this->echo_pc_active_customers();
-    $admin_view_template  = str_replace( 'ACTIVE_CUSTOMERS',
-                                        $active_customers,
-                                        $admin_view_template );*/
     $user_ids_info        = $this->echo_pc_user_ids();
     $admin_view_template  = str_replace( 'USER_IDS',
                                         $user_ids_info,
@@ -95,37 +89,6 @@ class Personal_Coach_Admin_View
 
     return $admin_view_template;
 
-  }
-
-  //Active users
-  private function echo_pc_active_customers(){
-    ob_start();
-
-    $active_customers = $this->admin->get_pc_active_customers();
-    ?>
-    <table>
-      <tr>
-        <th>Nombre</th>
-        <th>Mail</th>
-        <th>Teléfono</th>
-
-      </tr>
-      <?php foreach( $active_customers as $active_customer ): ?>
-        <tr>
-          <td><?php echo $active_customer->name; ?></td>
-          <td><?php echo $active_customer->mail; ?></td>
-          <td><?php echo $active_customer->phone; ?></td>
-          <td>
-            <button class="inactive_customer" type="button" value="<?php echo $active_customer->pc_customer_id; ?>">
-              Inactivar
-            </button>
-          </td>
-        </tr>
-      <?php endforeach; ?>
-    </table>
-    <?php
-
-    return ob_get_clean();
   }
 
   //Get pc users from data base

@@ -18,6 +18,30 @@ class Pc_Admin
 
     add_action( 'wp_ajax_pc_activate_customer', array($this, 'pc_activate_customer') );
     add_action( 'wp_ajax_nopriv_pc_activate_customer', array($this, 'pc_activate_customer') );
+
+    add_action( 'wp_ajax_pc_delete_customer', array($this, 'pc_delete_customer') );
+    add_action( 'wp_ajax_nopriv_pc_delete_customer', array($this, 'pc_delete_customer') );
+  }
+
+  public function pc_delete_customer(){
+    global $wpdb;
+
+    $customer_id = $_POST['pc_customer_id'];
+    $output = $wpdb->delete(
+                              $wpdb->prefix . 'pc_customers_tbl',
+                              array( 'pc_customer_id' => $customer_id ),
+                              array( '%d' )
+                           );
+
+    if( $update === false ){
+      $output = 'Error, contacte al administrador';
+    }elseif ( $update === 0 ) {
+      $output = 'El cliente no existe o ya fue eliminado';
+    }else{
+      $output = 'Cliente eliminado';
+    }
+
+    wp_send_json($output);
   }
 
   public function get_pc_inactive_customers(){
