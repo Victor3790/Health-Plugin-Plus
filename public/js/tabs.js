@@ -5,7 +5,7 @@
     let refresh_inactive = false;
 
     $( "#admin-tabs" ).tabs({
-      create:   add_customers,   //add_active_customers,
+      create:   add_customers,
       activate: check_tab
     });
 

@@ -20,15 +20,17 @@
         data:     pc_customer_info,
         method:   'POST',
         success:  on_success_customer_info,
-        error:    on_error_customer_info
-      });
+        error:    on_error_customer_info,
+      })
 
       $.ajax({
         url:      ajax_customer_info_object.ajax_url,
         data:     pc_customer_progress,
         method:   'POST',
         success:  on_success_customer_progress,
-        error:    on_error_customer_progress
+        error:    on_error_customer_progress,
+        beforeSend:   function(){$('#info_customers_loader').show();},
+        complete:     function(){$('#info_customers_loader').hide();}
       });
 
     });
@@ -123,26 +125,5 @@
         chart.draw( data, options );
       }
     }
-
-    /*$('.inactive_customer').click(function(){
-      console.log($(this).val());
-      var pc_customer_id = {
-        action: 'pc_inactive_customer',
-        pc_user_id: $(this).val()
-      }
-
-      $.ajax({
-        url: ajax_user_object.ajax_url,
-        data: pc_customer_id,
-        method: 'POST',
-        success: prueba_success,
-        error: function(){console.log('error')}
-      });
-
-    });
-
-    function prueba_success(result){
-      console.log(result);
-    }*/
   } );
 })(jQuery);

@@ -28,7 +28,10 @@
     <form id="pc_customer_select">
       PC_USERS_INFO
     </form>
-    <div>
+    <div class="tab">
+      <div id="info_customers_loader" class="loader clustomer_info_loader">
+        <div class="lds-dual-ring"></div>
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-5">
@@ -276,11 +279,16 @@
   </div><!-- End add_customer-->
 
   <div id="weekly_follow_up">
-
-    PC_USERS_PROGRESS
-
-    <div id="accordion_user_progress">
-    </div><!-- End accordion_user_progress -->
+    <div>
+      PC_USERS_PROGRESS
+    </div>
+    <div class="tab" style="min-height: 100px;">
+      <div id="follow_up_loader" class="loader clustomer_info_loader">
+        <div class="lds-dual-ring"></div>
+      </div>
+      <div id="accordion_user_progress">
+      </div><!-- End accordion_user_progress -->
+    </div>
   </div><!-- End weekly_follow_up -->
 
 </div><!-- End admin-tabs -->

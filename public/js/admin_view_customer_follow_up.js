@@ -12,15 +12,14 @@
         data: pc_customer_follow_up,
         method: 'POST',
         success: on_success_customer_follow_up,
-        error: on_error_customer_follow_up
+        error: on_error_customer_follow_up,
+        beforeSend:   function(){$('#follow_up_loader').show();},
+        complete:     function(){$('#follow_up_loader').hide();}
       });
 
     } );
 
     function on_success_customer_follow_up( user_data ){
-      console.log('Success!');
-      console.log(user_data);
-      console.log($( '#pc_user_follow_up' ).val());
       let id = '';
       let q1 = '¿Has tenido dificultes para seguir el plan? ¿Cuáles?';
       let q2 = '¿Algo que te gustaría añadir o cambiar?';
