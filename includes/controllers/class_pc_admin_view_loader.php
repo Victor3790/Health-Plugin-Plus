@@ -54,10 +54,10 @@ class Personal_Coach_Admin_View
                                         $admin_view_template );
 
     //Customer registration view
-    $active_customers     = $this->echo_pc_active_customers();
+    /*$active_customers     = $this->echo_pc_active_customers();
     $admin_view_template  = str_replace( 'ACTIVE_CUSTOMERS',
                                         $active_customers,
-                                        $admin_view_template );
+                                        $admin_view_template );*/
     $user_ids_info        = $this->echo_pc_user_ids();
     $admin_view_template  = str_replace( 'USER_IDS',
                                         $user_ids_info,

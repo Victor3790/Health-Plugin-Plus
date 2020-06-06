@@ -7,21 +7,20 @@
     <li><a href="#inactive_customers">Clientes inactivos</a></li>
   </ul>
 
-  <div id="active_customers">
-
-    ACTIVE_CUSTOMERS
-
+  <div class="tab" id="active_customers">
+    <table>
+    </table>
+    <div id="active_customers_loader" class="loader">
+      <div class="lds-dual-ring"></div>
+    </div>
   </div>
 
-  <div id="inactive_customers">
-    <table>
-      <tr>
-        <th>Nombre</th>
-        <th>Mail</th>
-        <th>Teléfono</th>
-        <th>Acciones</th>
-      </tr>
-    </table>
+  <div class="tab" id="inactive_customers">
+      <table>
+      </table>
+      <div id="inactive_customers_loader" class="loader">
+        <div class="lds-dual-ring"></div>
+      </div>
   </div>
 
   <div id="customer_info">

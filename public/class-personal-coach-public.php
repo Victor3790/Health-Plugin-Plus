@@ -161,6 +161,14 @@ class Personal_Coach_Public {
 			true
 		);
 
+		wp_localize_script(
+			$this->plugin_name . '_tabs',
+			'ajax_active_users_object',
+			[
+				'ajax_url' => admin_url( 'admin-ajax.php' )
+			]
+		);
+
 		//DatePicker
 		wp_register_script(
 			$this->plugin_name . '_date_picker',
@@ -281,7 +289,6 @@ class Personal_Coach_Public {
 				'ajax_url' => admin_url( 'admin-ajax.php' )
 			]
 		);
-
 	}
 
 	/**
