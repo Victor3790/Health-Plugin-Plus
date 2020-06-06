@@ -1,17 +1,35 @@
 (function($){
   $(document).ready(function(){
+
+    let refresh_active   = false;
+    let refresh_inactive = false;
+
     $( "#admin-tabs" ).tabs({
-      create:   add_active_customers,
+      create:   add_customers,   //add_active_customers,
       activate: check_tab
     });
 
+    function add_customers(){
+      add_active_customers();
+      add_inactive_customers();
+      console.log(refresh_active);
+    }
+
     function check_tab( event, ui ){
-      if( ui.newPanel.selector == '#inactive_customers' ){
+      console.log(refresh_active)
+      if( ui.newPanel.selector == '#inactive_customers' && refresh_inactive === true ){
+        refresh_inactive = false;
         add_inactive_customers();
+      }else if ( ui.newPanel.selector == '#active_customers' && refresh_active === true ) {
+        refresh_active = false;
+        add_active_customers();
       }
     }
 
+//*************************** Active customers
+
     function add_active_customers(){
+      $('#active_customers > table ').empty();
       let pc_active_customers = {
         action: 'pc_get_active_customers',
       }
@@ -43,10 +61,10 @@
             .append('<td>' + item.name + '</td>')
             .append('<td>' + item.mail + '</td>')
             .append('<td>' + item.phone + '</td>')
-            .append('<td><button value = "' + item.pc_customer_id + '"></button></td>')
+            .append('<td class = "inactivate_button"><button value = "' + item.pc_customer_id + '"></button></td>')
       });
 
-      $( 'td > button' )
+      $( '.inactivate_button > button' )
           .text( 'Inactivar' )
           .addClass( 'inactivate_customer' )
 
@@ -77,6 +95,7 @@
     }
 
     function inactivation_success(result){
+      refresh_inactive = true;
       alert(result);
       $('#active_customers > table ').empty();
       add_active_customers();
@@ -85,6 +104,8 @@
     function inactivation_error(){
       alert('Error, consulte al administrador');
     }
+
+//********************** Inactive customers
 
     function add_inactive_customers(){
       let pc_inactive_customers = {
@@ -120,17 +141,43 @@
             .append('<td>' + item.name + '</td>')
             .append('<td>' + item.mail + '</td>')
             .append('<td>' + item.phone + '</td>')
-            .append('<td><button value = "' + item.pc_customer_id + '"></button></td>')
+            .append('<td class="activate_button"><button value = "' + item.pc_customer_id + '"></button></td>')
       });
 
-      $( 'td > button' )
+      $( '.activate_button > button' )
           .text( 'Activar' )
           .addClass( 'activate_customer' )
 
-      $('.inactivate_customer').one('click', function(){
+      $('.activate_customer').one('click', function(){
         let customer_id = $(this).val();
         activate_customer( customer_id );
       });
+    }
+
+    function activate_customer( customer_id ){
+      let pc_customer = {
+        action: 'pc_activate_customer',
+        pc_customer_id: customer_id
+      }
+
+      $.ajax({
+        url: ajax_active_users_object.ajax_url,
+        data: pc_customer,
+        method: 'POST',
+        success: activation_success,
+        error: activation_error
+      });
+    }
+
+    function activation_success(result){
+      refresh_active = true;
+      alert(result);
+      $('#inactive_customers > table ').empty();
+      add_inactive_customers();
+    }
+
+    function activation_error(){
+      alert('Error, consulte al administrador');
     }
 
   });

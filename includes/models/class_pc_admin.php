@@ -15,6 +15,9 @@ class Pc_Admin
 
     add_action( 'wp_ajax_pc_get_inactive_customers', array($this, 'get_pc_inactive_customers') );
     add_action( 'wp_ajax_nopriv_pc_get_inactive_customers', array($this, 'get_pc_inactive_customers') );
+
+    add_action( 'wp_ajax_pc_activate_customer', array($this, 'pc_activate_customer') );
+    add_action( 'wp_ajax_nopriv_pc_activate_customer', array($this, 'pc_activate_customer') );
   }
 
   public function get_pc_inactive_customers(){
@@ -51,6 +54,29 @@ class Pc_Admin
       $output = 'El cliente no existe o ya fue inactivado';
     }else{
       $output = 'Cliente inactivado';
+    }
+
+    wp_send_json($output);
+  }
+
+  public function pc_activate_customer(){
+
+    global $wpdb;
+
+    $customer_id = $_POST['pc_customer_id'];
+    $update = $wpdb->update(
+            $wpdb->prefix . 'pc_customers_tbl',
+            array('active' => true),
+            array('pc_customer_id' => $customer_id),
+            array('%d'), array('%d')
+           );
+
+    if( $update === false ){
+      $output = 'Error, contacte al administrador';
+    }elseif ( $update === 0 ) {
+      $output = 'El cliente no existe o ya fue inactivado';
+    }else{
+      $output = 'Cliente activado';
     }
 
     wp_send_json($output);
