@@ -188,15 +188,25 @@ class Pc_Customer
   private function pc_get_current_week( $start_date ){
 
     $unix_time = strtotime( $start_date );
-
     $start_week = date( 'W', $unix_time );
-
     $current_year_week = date( 'W' );
+    $start_year = date( 'o', $unix_time );
+    $current_year = date( 'o' );
 
-    if( $start_week >= $current_year_week ){
+    if( $start_year == $current_year ){
+      if( $start_week >= $current_year_week ){
+        $current_customer_week = 1;
+      }else{
+        $current_customer_week = ( $current_year_week - $start_week ) + 1;
+      }
+    }elseif( $start_year < $current_year ){
+      $customer_full_years = ( $current_year - $start_year ) - 1;
+      $customer_full_year_weeks = $customer_full_years * 52;
+      $customer_first_year_weeks = ( 52 - $start_week ) + 1;
+
+      $current_customer_week = $customer_full_year_weeks + $customer_first_year_weeks + $current_year_week;
+    }elseif( $start_year > $current_year ){
       $current_customer_week = 1;
-    }else{
-      $current_customer_week = ( $current_year_week - $start_week ) + 1;
     }
 
     return $current_customer_week;
