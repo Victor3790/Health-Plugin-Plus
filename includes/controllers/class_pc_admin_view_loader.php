@@ -44,46 +44,74 @@ class Personal_Coach_Admin_View
     wp_enqueue_script( $this->plugin_name . '_customer_registration' );
     wp_enqueue_script( $this->plugin_name . '_admin_view_customer_info' );
     wp_enqueue_script( $this->plugin_name . '_admin_view_customer_follow_up' );
+    wp_enqueue_script( $this->plugin_name . '_get_customer_info' );
 
     //Customer info view
 
     $admin_view_template  = file_get_contents( $this->url_file, true );
-    $pc_users             = $this->echo_pc_customers();
-    $admin_view_template  = str_replace( 'PC_USERS_INFO',
+    $pc_users             = $this->echo_pc_customers('pc_customer_info', 'user_registration_form');
+    $admin_view_template  = str_replace( 'INFO_CUSTOMERS_IDS',
                                         $pc_users,
                                         $admin_view_template );
     $user_ids_info        = $this->echo_pc_user_ids();
     $admin_view_template  = str_replace( 'USER_IDS',
                                         $user_ids_info,
                                         $admin_view_template );
-    $countries            = $this->echo_pc_countries();
-    $admin_view_template  = str_replace( 'COUNTRIES',
+    $countries            = $this->echo_pc_countries('country', 'user_registration_form');
+    $admin_view_template  = str_replace( 'REGISTER_CUSTOMER_COUNTRIES',
                                         $countries,
                                         $admin_view_template );
-    $physical_activities  = $this->echo_pc_physical_activities();
-    $admin_view_template  = str_replace( 'PHYSICAL_ACTIVITIES',
+    $physical_activities  = $this->echo_pc_physical_activities('physical_activity', 'user_registration_form');
+    $admin_view_template  = str_replace( 'REGISTER_CUSTOMER_PHYSICAL_ACTIVITIES',
                                         $physical_activities,
                                         $admin_view_template );
-    $goals                = $this->echo_pc_goals();
-    $admin_view_template  = str_replace( 'GOALS',
+    $goals                = $this->echo_pc_goals('goal', 'user_registration_form');
+    $admin_view_template  = str_replace( 'REGISTER_CUSTOMER_GOALS',
                                         $goals,
                                         $admin_view_template );
-    $trainings            = $this->echo_pc_trainings();
-    $admin_view_template  = str_replace( 'TRAININGS',
+    $trainings            = $this->echo_pc_trainings('training', 'user_registration_form');
+    $admin_view_template  = str_replace( 'REGISTER_CUSTOMER_TRAININGS',
                                         $trainings,
                                         $admin_view_template );
-    $training_areas       = $this->echo_pc_training_areas();
-    $admin_view_template  = str_replace( 'TRAINING_AREAS',
+    $training_areas       = $this->echo_pc_training_areas('training_area', 'user_registration_form');
+    $admin_view_template  = str_replace( 'REGISTER_CUSTOMER_TRAINING_AREAS',
                                         $training_areas,
                                         $admin_view_template );
-    $diets                = $this->echo_pc_diets();
-    $admin_view_template  = str_replace( 'DIETS',
+    $diets                = $this->echo_pc_diets('diet', 'user_registration_form');
+    $admin_view_template  = str_replace( 'REGISTER_CUSTOMER_DIETS',
                                         $diets,
                                         $admin_view_template );
-
     $pc_users_progress    = $this->echo_pc_users_progress();
     $admin_view_template  = str_replace( 'PC_USERS_PROGRESS',
                                         $pc_users_progress,
+                                        $admin_view_template );
+    $pc_update_users      = $this->echo_pc_customers('pc_update_customer_info', 'update_customer_form');
+    $admin_view_template  = str_replace( 'UPDATE_CUSTOMERS_IDS',
+                                        $pc_update_users,
+                                        $admin_view_template );
+    $pc_update_countries  = $this->echo_pc_countries('update_country', 'update_customer_form');
+    $admin_view_template  = str_replace( 'UPDATE_CUSTOMER_COUNTRIES',
+                                        $pc_update_countries,
+                                        $admin_view_template );
+    $pc_update_physical_activities  = $this->echo_pc_physical_activities('update_physical_activity', 'update_customer_form');
+    $admin_view_template  = str_replace( 'UPDATE_CUSTOMER_PHYSICAL_ACTIVITIES',
+                                        $pc_update_physical_activities,
+                                        $admin_view_template );
+    $pc_update_goals                = $this->echo_pc_goals('update_goal', 'update_customer_form');
+    $admin_view_template  = str_replace( 'UPDATE_CUSTOMER_GOALS',
+                                        $pc_update_goals,
+                                        $admin_view_template );
+    $pc_update_trainings            = $this->echo_pc_trainings('update_training', 'update_customer_form');
+    $admin_view_template  = str_replace( 'UPDATE_CUSTOMER_TRAININGS',
+                                        $pc_update_trainings,
+                                        $admin_view_template );
+    $pc_update_training_areas       = $this->echo_pc_training_areas('update_training_area', 'update_customer_form');
+    $admin_view_template  = str_replace( 'UPDATE_CUSTOMER_TRAINING_AREAS',
+                                        $pc_update_training_areas,
+                                        $admin_view_template );
+    $pc_update_diets                = $this->echo_pc_diets('update_diet', 'update_customer_form');
+    $admin_view_template  = str_replace( 'UPDATE_CUSTOMER_DIETS',
+                                        $pc_update_diets,
                                         $admin_view_template );
 
 
@@ -92,13 +120,13 @@ class Personal_Coach_Admin_View
   }
 
   //Get pc users from data base
-  private function echo_pc_customers(){
+  private function echo_pc_customers( $tab_id, $form_id ){
 
     ob_start();
     $pc_customers = $this->admin->get_pc_customers();
     ?>
-    <label for="pc_customer_info">Selecciona un cliente</label>
-    <select id="pc_customer_info" name="pc_customer_info" form="pc_customer_select" required>
+    <label for="<?php echo $tab_id; ?>">Selecciona un cliente</label>
+    <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>
       <option value="">Selecciona</option>
       <?php foreach( $pc_customers as $pc_customer ): ?>
         <option value="<?php echo $pc_customer->pc_customer_id; ?>">
@@ -112,14 +140,14 @@ class Personal_Coach_Admin_View
     return ob_get_clean();
   }
 
-  //Get user ids from data base
+  //Get customer ids from data base
   private function echo_pc_user_ids(){
 
     ob_start();
     $user_ids = get_users( array( 'role'=>'subscriber', 'fields'=>array( 'ID','user_email' ) ) );
     ?>
     <label for="user">Usuario</label>
-    <select id="pc_user_id_reg" name="user" form="user_registration_form" required>
+    <select id="pc_user_id_reg" name="user" required>
       <option value="">Selecciona</option>
       <?php foreach( $user_ids as $user ): ?>
         <option value="<?php echo $user->ID; ?>">
@@ -134,14 +162,14 @@ class Personal_Coach_Admin_View
   }
 
   //Get countries from data base
-  private function echo_pc_countries(){
+  private function echo_pc_countries( $tab_id, $form_id ){
 
     ob_start();
     $countries = $this->admin->get_pc_countries();
 
     ?>
-    <label for="countries" class="follow-up__label">País</label>
-    <select id="country" name="country" form="user_registration_form" required>
+    <label for="<?php echo $tab_id; ?>" class="follow-up__label">País</label>
+    <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>
     <option value="">Selecciona</option>
     <?php foreach( $countries as $country ): ?>
       <option value="<?php echo $country->id; ?>">
@@ -156,14 +184,14 @@ class Personal_Coach_Admin_View
   }
 
   //Get physical activities from data base
-  private function echo_pc_physical_activities(){
+  private function echo_pc_physical_activities( $tab_id, $form_id ){
 
     ob_start();
     $physical_activities = $this->admin->get_pc_physical_activities();
     ?>
 
-    <label for="physical_activities" class="follow-up__label">Actividad física</label>
-    <select id="physical_activity" name="physical_activity" form="user_registration_form" required>
+    <label for="<?php echo $tab_id; ?>" class="follow-up__label">Actividad física</label>
+    <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>
     <option value="">Selecciona</option>
     <?php foreach( $physical_activities as $physical_activity ): ?>
       <option value="<?php echo $physical_activity->id; ?>">
@@ -178,14 +206,14 @@ class Personal_Coach_Admin_View
   }
 
   //Get goals from data base
-  private function echo_pc_goals(){
+  private function echo_pc_goals( $tab_id, $form_id ){
 
     ob_start();
     $goals = $this->admin->get_pc_goals();
     ?>
 
-    <label for="goals" class="follow-up__label">Objetivo</label>
-    <select id="goal" name="goal" form="user_registration_form" required>
+    <label for="<?php echo $tab_id; ?>" class="follow-up__label">Objetivo</label>
+    <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>
     <option value="">Selecciona</option>
     <?php foreach( $goals as $goal ): ?>
       <option value="<?php echo $goal->id; ?>">
@@ -200,7 +228,7 @@ class Personal_Coach_Admin_View
   }
 
   //Get trainings from data base
-  private function echo_pc_trainings(){
+  private function echo_pc_trainings( $tab_id, $form_id ){
 
     global $wpdb;
 
@@ -208,8 +236,8 @@ class Personal_Coach_Admin_View
     $trainings = $this->admin->get_pc_trainings();
     ?>
 
-    <label for="trainings" class="follow-up__label">Tipo de entrenamiento</label>
-    <select id="training" name="training" form="user_registration_form" required>
+    <label for="<?php echo $tab_id; ?>" class="follow-up__label">Tipo de entrenamiento</label>
+    <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>
     <option value="">Selecciona</option>
     <?php foreach( $trainings as $training ): ?>
       <option value="<?php echo $training->id; ?>">
@@ -224,14 +252,14 @@ class Personal_Coach_Admin_View
   }
 
   //Get training areas from data base
-  private function echo_pc_training_areas(){
+  private function echo_pc_training_areas( $tab_id, $form_id ){
 
     ob_start();
     $training_areas = $this->admin->get_pc_training_areas();
     ?>
 
-    <label for="training_area" class="follow-up__label">Lugar de entrenamieto</label>
-    <select id="training_area" name="training_area" form="user_registration_form" required>
+    <label for="<?php echo $tab_id; ?>" class="follow-up__label">Lugar de entrenamieto</label>
+    <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>
     <option value="">Selecciona</option>
     <?php foreach( $training_areas as $training_area ): ?>
       <option value="<?php echo $training_area->id; ?>">
@@ -246,14 +274,14 @@ class Personal_Coach_Admin_View
   }
 
   //Get diets from data base
-  private function echo_pc_diets(){
+  private function echo_pc_diets( $tab_id, $form_id ){
 
     ob_start();
     $diets = $this->admin->get_pc_diets();
     ?>
 
-    <label for="diet" class="follow-up__label">Tipo de dieta</label>
-    <select id="diet" name="diet" form="user_registration_form" required>
+    <label for="<?php echo $tab_id; ?>" class="follow-up__label">Tipo de dieta</label>
+    <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>
     <option value="">Selecciona</option>
     <?php foreach( $diets as $diet ): ?>
       <option value="<?php echo $diet->id; ?>">

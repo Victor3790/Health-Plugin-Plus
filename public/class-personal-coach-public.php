@@ -205,6 +205,15 @@ class Personal_Coach_Public {
 			true
 		);
 
+		//Message test
+		wp_register_script(
+			$this->plugin_name . '_get_customer_info',
+			plugin_dir_url( __FILE__ ) . 'js/get_customer_info.js',
+			array('jquery'),
+			$this->version,
+			true
+		);
+
 		//Google charts
 		wp_register_script(
 			$this->plugin_name . '_google_charts',

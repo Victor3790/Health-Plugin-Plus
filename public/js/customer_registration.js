@@ -3,7 +3,7 @@
     var photo;
 
     //Get the file
-    $('#photo').change(function(){
+    $('#registration_photo').change(function(){
       photo = this.files[0];
     });
 

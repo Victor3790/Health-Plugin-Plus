@@ -4,6 +4,7 @@
     <li><a href="#customer_info">Información de clientes</a></li>
     <li><a href="#weekly_follow_up">Avance semanal</a></li>
     <li><a href="#add_customer">Nuevo cliente</a></li>
+    <li><a href="#update_customer">Modificar cliente</a></li>
     <li><a href="#inactive_customers">Clientes inactivos</a></li>
   </ul>
 
@@ -26,7 +27,7 @@
   <div id="customer_info">
     <h1>Información de usuario</h1>
     <form id="pc_customer_select">
-      PC_USERS_INFO
+      INFO_CUSTOMERS_IDS
     </form>
     <div class="tab">
       <div id="info_customers_loader" class="loader clustomer_info_loader">
@@ -188,7 +189,7 @@
       <label for="phone" class="follow-up__label">Teléfono</label><br>
       <input id="phone" class="follow-up__input" type="tel" name="phone" value=""required><br>
 
-      COUNTRIES
+      REGISTER_CUSTOMER_COUNTRIES
 
       <label for="city" class="follow-up__label">Ciudad</label><br>
       <input id="city" class="follow-up__input" type="text" name="city" value=""required><br>
@@ -213,7 +214,7 @@
         <input id="height" class="follow-up__input--short" type="text" name="height" value="" required>
         <p class="follow-up__input-units">cm.</p>
 
-        PHYSICAL_ACTIVITIES
+        REGISTER_CUSTOMER_PHYSICAL_ACTIVITIES
 
         <div class="row">
           <div class="col-12">
@@ -239,19 +240,19 @@
       <input id="percent" class="follow-up__input--short" type="text" name="percent" value="" required>
       <p class="follow-up__input-units">%.</p>
 
-      GOALS
+      REGISTER_CUSTOMER_GOALS
 
-      TRAININGS
+      REGISTER_CUSTOMER_TRAININGS
 
       <label for="days_week" class="follow-up__label">Días a la semana</label><br>
       <input id="days_week" class="follow-up__input" type="text" name="days_week" value="" required><br>
 
-      TRAINING_AREAS
+      REGISTER_CUSTOMER_TRAINING_AREAS
 
       <label for="sports" class="follow-up__label">Otros deportes</label><br>
       <input id="sports" class="follow-up__input" type="text" name="sports" value="" required><br>
 
-      DIETS
+      REGISTER_CUSTOMER_DIETS
 
       <label for="meals" class="follow-up__label">Número de comidas</label><br>
       <input id="meals" class="follow-up__input" type="text" name="meals" value="" required><br>
@@ -262,8 +263,8 @@
       <label for="supplementation" class="follow-up__label">Suplementación</label><br>
       <input class="follow-up__input" id="supplementation" type="text" name="supplementation" value="" required><br>
 
-      <label for="photo" class="follow-up__label">Adjuntar foto</label><br>
-      <input class="follow-up__input" id="photo" type="file" required>
+      <label for="registration_photo" class="follow-up__label">Adjuntar foto</label><br>
+      <input class="follow-up__input" id="registration_photo" type="file" required>
 
       <label for="notes" class="follow-up__label">Notas</label><br>
       <textarea id="notes" name="notes"></textarea>
@@ -278,12 +279,113 @@
     </p>
   </div><!-- End add_customer-->
 
+  <div id="update_customer">
+    <form id="update_customer_form" enctype=”multipart/form-data” class="follow-up__form">
+
+      UPDATE_CUSTOMERS_IDS
+
+      <label for="update_name" class="follow-up__label">Nombre</label><br>
+      <input id="update_name" class="follow-up__input" type="text" name="update_name" value="" required><br>
+
+      <label for="update_phone" class="follow-up__label">Teléfono</label><br>
+      <input id="update_phone" class="follow-up__input" type="tel" name="update_phone" value=""required><br>
+
+      UPDATE_CUSTOMER_COUNTRIES
+
+      <label for="update_city" class="follow-up__label">Ciudad</label><br>
+      <input id="update_city" class="follow-up__input" type="text" name="update_city" value=""required><br>
+
+      <label for="update_start-date-view" class="follow-up__label">Fecha de inicio</label><br>
+      <input id="update_start-date-view" class="follow-up__input" type="text" name="update_start-date-view" required><br>
+      <input id="update_start-date" type="hidden" name="update_start-date">
+
+      <fieldset class="update_follow-up__fieldset">
+
+        <legend>Calcular calorías a consumir.</legend>
+
+        <label for="update_age" class="follow-up__label">Edad</label><br>
+        <input id="update_age" class="follow-up__input--short" type="number" name="update_age" value="" required>
+        <p class="follow-up__input-units">años.</p>
+
+        <label for="update_weight" class="follow-up__label">Peso</label><br>
+        <input id="update_weight" class="follow-up__input--short" type="text" name="update_weight" value="" required>
+        <p class="follow-up__input-units">Kg.</p>
+
+        <label for="update_height" class="follow-up__label">Altura</label><br>
+        <input id="update_height" class="follow-up__input--short" type="text" name="update_height" value="" required>
+        <p class="follow-up__input-units">cm.</p>
+
+        UPDATE_CUSTOMER_PHYSICAL_ACTIVITIES
+
+        <div class="row">
+          <div class="col-12">
+            <p class="follow-up__label">Sexo</p>
+          </div>
+          <div class="col-6 col-md-4 col-xl-2">
+            <input type="radio" id="update_male" name="update_gender" value="M">
+            <label for="update_male">Hombre</label>
+          </div>
+          <div class="col-6 col-md-4 col-xl-2">
+            <input type="radio" id="update_female" name="update_gender" value="F">
+            <label for="update_female">Mujer</label>
+          </div>
+        </div>
+
+        <label for="update_calories" class="follow-up__label">Calorías a consumir</label><br>
+        <input id="update_calories" class="follow-up__input--short" type="text" name="update_calories" value="" readonly required>
+        <p class="follow-up__input-units">Kcal.</p>
+
+      </fieldset>
+
+      <label for="update_percent" class="follow-up__label">Porcentaje</label><br>
+      <input id="update_percent" class="follow-up__input--short" type="text" name="update_percent" value="" required>
+      <p class="follow-up__input-units">%.</p>
+
+      UPDATE_CUSTOMER_GOALS
+
+      UPDATE_CUSTOMER_TRAININGS
+
+      <label for="update_days_week" class="follow-up__label">Días a la semana</label><br>
+      <input id="update_days_week" class="follow-up__input" type="text" name="update_days_week" value="" required><br>
+
+      UPDATE_CUSTOMER_TRAINING_AREAS
+
+      <label for="update_sports" class="follow-up__label">Otros deportes</label><br>
+      <input id="update_sports" class="follow-up__input" type="text" name="update_sports" value="" required><br>
+
+      UPDATE_CUSTOMER_DIETS
+
+      <label for="update_meals" class="follow-up__label">Número de comidas</label><br>
+      <input id="update_meals" class="follow-up__input" type="text" name="update_meals" value="" required><br>
+
+      <label for="update_intolerances" class="follow-up__label">Intolerancias</label><br>
+      <input id="update_intolerances" class="follow-up__input" type="text" name="update_intolerances" value=""required.><br>
+
+      <label for="update_supplementation" class="follow-up__label">Suplementación</label><br>
+      <input class="follow-up__input" id="update_supplementation" type="text" name="update_supplementation" value="" required><br>
+
+      <label for="update_photo" class="follow-up__label">Adjuntar foto</label><br>
+      <input class="follow-up__input" id="update_photo" type="file" required>
+
+      <label for="update_notes" class="follow-up__label">Notas</label><br>
+      <textarea id="update_notes" name="update_notes"></textarea>
+
+      <button id="pc_update_button" class="form__button" type="submit" name="send">Registrar</button>
+    </form>
+    <div id="user_registration_status"></div>
+    <p id="new_user" style="cursor:pointer; display:none;">
+      <b><u>
+        Registrar nuevo usuario.
+      </u></b>
+    </p>
+  </div><!-- End update_customer-->
+
   <div id="weekly_follow_up">
     <div>
       PC_USERS_PROGRESS
     </div>
     <div class="tab" style="min-height: 100px;">
-      <div id="follow_up_loader" class="loader clustomer_info_loader">
+      <div id="follow_up_loader" class="loader customer_info_loader">
         <div class="lds-dual-ring"></div>
       </div>
       <div id="accordion_user_progress">
