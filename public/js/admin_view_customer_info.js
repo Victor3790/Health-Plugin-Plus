@@ -1,10 +1,10 @@
 (function($){
   $(document).ready(function(){
     $( '#pc_customer_info' ).change( function() {
-      var pc_customer_info = {
-        action:     'pc_get_customer',
-        pc_customer_id: $( '#pc_customer_info' ).val()
-      }
+      health_plugin_get_customer_info( $( '#pc_customer_info' ).val(), 
+        function(result){
+          on_success_customer_info(result);
+        });
 
       var pc_customer_progress = {
         action: 'pc_get_ajax_progress',
@@ -14,13 +14,7 @@
       $('#weights').empty();
       $('#weeks').empty();
 
-      $.ajax({
-        url:      ajax_customer_info_object.ajax_url,
-        data:     pc_customer_info,
-        method:   'POST',
-        success:  on_success_customer_info,
-        error:    on_error_customer_info,
-      })
+
 
       $.ajax({
         url:      ajax_customer_info_object.ajax_url,
@@ -69,10 +63,6 @@
       });
 
       drawProgressChart();
-    }
-
-    function on_error_customer_info(){
-      console.log('Could not get the user info');
     }
 
     function on_error_customer_progress(){
