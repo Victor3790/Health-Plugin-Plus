@@ -1,11 +1,18 @@
 (function($){
   $(document).ready(function(){
 
-    $.datepicker.setDefaults( $.datepicker.regional[ 'es' ] );
+	$.datepicker.setDefaults( $.datepicker.regional[ 'es' ] );
+	
     $( '#start-date-view' ).datepicker({
       altField:  '#start-date',
       altFormat: 'yy-mm-dd'
-    });
+	});
+	
+    $( '#update_start-date-view' ).datepicker({
+      altField:  '#update_start-date',
+      altFormat: 'yy-mm-dd'
+	});
+	
   });
 
 

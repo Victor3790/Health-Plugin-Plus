@@ -1,15 +1,44 @@
 (function($){
   $(document).ready(function(){
+
     $('form input:radio[name = "gender"]').change(function(){
 
-      let weight              = $( '#weight' ).val();
-      let height              = $( '#height' ).val();
-      let age                 = $( '#age' ).val();
-      let physical_activity   = $( '#physical_activity' ).val();
-      let gender              = $(this).val();
-      let percent             = $( '#percent' ).val();
+      let calories;
 
-      let tmb_percent         = 0;
+      calories = get_calories(
+                  $( '#weight' ).val(),
+                  $( '#height' ).val(),
+                  $( '#age' ).val(),
+                  $( '#physical_activity' ).val(),
+                  $(this).val()
+                );
+
+      $( '#calories' ).val( calories );
+
+    });
+
+    $('form input:radio[name = "update_gender"]').change(function(){
+
+      let calories;
+
+      calories = get_calories(
+                  $( '#update_weight' ).val(),
+                  $( '#update_height' ).val(),
+                  $( '#update_age' ).val(),
+                  $( '#update_physical_activity' ).val(),
+                  $(this).val()
+                );
+
+      $( '#update_calories' ).val( calories );
+
+    });
+
+    function get_calories(p_weight, p_height, p_age, p_physical_activity, p_gender){
+      let weight              = p_weight;
+      let height              = p_height;
+      let age                 = p_age;
+      let physical_activity   = p_physical_activity;
+      let gender              = p_gender;
 
       let tmb = ( 10 * weight ) + ( 6.25 * height ) - ( 5 * age );
 
@@ -37,12 +66,8 @@
           break;
       }
 
-      /*tmb_percent = ( tmb / 100 ) * percent;
+      return Math.round(tmb);
+    }
 
-      tmb += tmb_percent;*/
-
-      $( '#calories' ).val( Math.round(tmb) );
-
-    });
   });
 })(jQuery);

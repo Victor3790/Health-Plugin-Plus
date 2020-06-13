@@ -5,16 +5,13 @@
 class Personal_Coach_Admin_View
 {
   private $plugin_name;
-
   private $url_file;
-
   private $admin;
-
   private $customer_registration;
-
   private $user;
-
   private $follow_up;
+  private $customers;
+  private $countries;
 
   public function __construct( $url_file_view, $plugin_name )
   {
@@ -24,6 +21,8 @@ class Personal_Coach_Admin_View
     $this->customer_registration = new Pc_Customer_Registration;
     $this->user = new Pc_Ajax_Customer;
     $this->follow_up = new Pc_Follow_Up;
+
+    $this->customers =  $this->admin->get_pc_customers();
   }
 
   public function pc_create_admin_view(){
@@ -45,6 +44,7 @@ class Personal_Coach_Admin_View
     wp_enqueue_script( $this->plugin_name . '_admin_view_customer_info' );
     wp_enqueue_script( $this->plugin_name . '_admin_view_customer_follow_up' );
     wp_enqueue_script( $this->plugin_name . '_get_customer_info' );
+    wp_enqueue_script( $this->plugin_name . '_update_customer' );
 
     //Customer info view
 
@@ -123,7 +123,7 @@ class Personal_Coach_Admin_View
   private function echo_pc_customers( $tab_id, $form_id ){
 
     ob_start();
-    $pc_customers = $this->admin->get_pc_customers();
+    $pc_customers = $this->customers;
     ?>
     <label for="<?php echo $tab_id; ?>">Selecciona un cliente</label>
     <select id="<?php echo $tab_id; ?>" name="<?php echo $tab_id; ?>" form="<?php echo $form_id; ?>" required>

@@ -364,13 +364,13 @@
       <label for="update_supplementation" class="follow-up__label">Suplementación</label><br>
       <input class="follow-up__input" id="update_supplementation" type="text" name="update_supplementation" value="" required><br>
 
-      <label for="update_photo" class="follow-up__label">Adjuntar foto</label><br>
-      <input class="follow-up__input" id="update_photo" type="file" required>
+      <!--<label for="update_photo" class="follow-up__label">Adjuntar foto</label><br>
+      <input class="follow-up__input" id="update_photo" type="file" required>-->
 
       <label for="update_notes" class="follow-up__label">Notas</label><br>
       <textarea id="update_notes" name="update_notes"></textarea>
 
-      <button id="pc_update_button" class="form__button" type="submit" name="send">Registrar</button>
+      <button id="pc_update_button" class="form__button" type="submit" name="send">Actualizar información</button>
     </form>
     <div id="user_registration_status"></div>
     <p id="new_user" style="cursor:pointer; display:none;">

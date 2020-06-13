@@ -37,6 +37,20 @@ class Pc_Customer
     return $output;
   }
 
+  public function pc_get_customer_raw_info(){
+    global $wpdb;
+
+    $query = 'SELECT * FROM '. $wpdb->prefix . 'pc_customers_tbl WHERE pc_customer_id = %d';
+
+    $output = $wpdb->get_results(
+      $wpdb->prepare($query, [$this->customer_id]),
+      'ARRAY_A'
+    );
+
+    return $output;
+
+  }
+
   public function pc_get_customer_info(){
     global $wpdb;
 

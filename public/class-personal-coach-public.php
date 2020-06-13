@@ -205,10 +205,19 @@ class Personal_Coach_Public {
 			true
 		);
 
-		//Message test
+		//Get customer info
 		wp_register_script(
 			$this->plugin_name . '_get_customer_info',
 			plugin_dir_url( __FILE__ ) . 'js/get_customer_info.js',
+			array('jquery'),
+			$this->version,
+			true
+		);
+
+		//Get update customer
+		wp_register_script(
+			$this->plugin_name . '_update_customer',
+			plugin_dir_url( __FILE__ ) . 'js/update_customer.js',
 			array('jquery'),
 			$this->version,
 			true
