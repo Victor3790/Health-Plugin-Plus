@@ -202,17 +202,4 @@ class Pc_Admin
 
   }
 
-  public function get_pc_users_progress(){
-    global $wpdb;
-
-    $output = $wpdb->get_results(
-        'SELECT
-          `pc_customer_id`,
-          `name`
-         FROM `' . $wpdb->prefix . 'pc_customers_tbl`');
-
-    return $output;
-
-  }
-
 }

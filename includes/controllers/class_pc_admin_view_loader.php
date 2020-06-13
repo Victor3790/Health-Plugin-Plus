@@ -12,6 +12,11 @@ class Personal_Coach_Admin_View
   private $follow_up;
   private $customers;
   private $countries;
+  private $physical_activities;
+  private $goals;
+  private $trainings;
+  private $training_areas;
+  private $diets;
 
   public function __construct( $url_file_view, $plugin_name )
   {
@@ -23,6 +28,12 @@ class Personal_Coach_Admin_View
     $this->follow_up = new Pc_Follow_Up;
 
     $this->customers =  $this->admin->get_pc_customers();
+    $this->countries =  $this->admin->get_pc_countries();
+    $this->physical_activities = $this->admin->get_pc_physical_activities();
+    $this->goals = $this->admin->get_pc_goals();
+    $this->trainings = $this->admin->get_pc_trainings();
+    $this->training_areas = $this->admin->get_pc_training_areas();
+    $this->diets = $this->admin->get_pc_diets();
   }
 
   public function pc_create_admin_view(){
@@ -165,7 +176,7 @@ class Personal_Coach_Admin_View
   private function echo_pc_countries( $tab_id, $form_id ){
 
     ob_start();
-    $countries = $this->admin->get_pc_countries();
+    $countries = $this->countries;
 
     ?>
     <label for="<?php echo $tab_id; ?>" class="follow-up__label">País</label>
@@ -187,7 +198,7 @@ class Personal_Coach_Admin_View
   private function echo_pc_physical_activities( $tab_id, $form_id ){
 
     ob_start();
-    $physical_activities = $this->admin->get_pc_physical_activities();
+    $physical_activities = $this->physical_activities;
     ?>
 
     <label for="<?php echo $tab_id; ?>" class="follow-up__label">Actividad física</label>
@@ -209,7 +220,7 @@ class Personal_Coach_Admin_View
   private function echo_pc_goals( $tab_id, $form_id ){
 
     ob_start();
-    $goals = $this->admin->get_pc_goals();
+    $goals = $this->goals;
     ?>
 
     <label for="<?php echo $tab_id; ?>" class="follow-up__label">Objetivo</label>
@@ -233,7 +244,7 @@ class Personal_Coach_Admin_View
     global $wpdb;
 
     ob_start();
-    $trainings = $this->admin->get_pc_trainings();
+    $trainings = $this->trainings;
     ?>
 
     <label for="<?php echo $tab_id; ?>" class="follow-up__label">Tipo de entrenamiento</label>
@@ -255,7 +266,7 @@ class Personal_Coach_Admin_View
   private function echo_pc_training_areas( $tab_id, $form_id ){
 
     ob_start();
-    $training_areas = $this->admin->get_pc_training_areas();
+    $training_areas = $this->training_areas;
     ?>
 
     <label for="<?php echo $tab_id; ?>" class="follow-up__label">Lugar de entrenamieto</label>
@@ -277,7 +288,7 @@ class Personal_Coach_Admin_View
   private function echo_pc_diets( $tab_id, $form_id ){
 
     ob_start();
-    $diets = $this->admin->get_pc_diets();
+    $diets = $this->diets;
     ?>
 
     <label for="<?php echo $tab_id; ?>" class="follow-up__label">Tipo de dieta</label>
@@ -302,7 +313,7 @@ class Personal_Coach_Admin_View
     global $wpdb;
 
     ob_start();
-    $pc_users = $this->admin->get_pc_users_progress();
+    $pc_users = $this->customers;
     ?>
     <label for="pc_user_follow_up">Selecciona un cliente</label>
     <select id="pc_user_follow_up" name="pc_user_follow_up">
