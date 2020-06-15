@@ -18,7 +18,6 @@ class Pc_Customer_Update
 
     $user_id            = $_POST['pc_user_id'];
     $name               = $_POST['name'];
-    $mail               = $_POST['mail'];
     $phone              = $_POST['phone'];
     $country            = $_POST['country'];
     $city               = $_POST['city'];
@@ -45,7 +44,6 @@ class Pc_Customer_Update
       $wpdb->prefix . 'pc_customers_tbl',
       [
         'name'              => $name,
-        'mail'              => $mail,
         'phone'             => $phone,
         'country'           => $country,
         'city'              => $city,
@@ -72,7 +70,7 @@ class Pc_Customer_Update
         'pc_customer_id'    => $user_id ,
       ],
       [
-        '%s', '%s', '%s', '%d', '%s' ,
+        '%s', '%s', '%d', '%s' ,
         '%d', '%s', '%f', '%f', '%d' ,
         '%d', '%d', '%d', '%d', '%d' ,
         '%s', '%d', '%d', '%d', '%s' ,

@@ -47,7 +47,6 @@
     
             updateFormData.append( 'pc_user_id',        $( '#pc_update_customer_info' ).val() );
             updateFormData.append( 'name',              $( '#update_name' ).val() );
-            updateFormData.append( 'mail',              $( '#update_mail' ).val() );
             updateFormData.append( 'phone',             $( '#update_phone' ).val() );
             updateFormData.append( 'country',           $( '#update_country' ).val() );
             updateFormData.append( 'city',              $( '#update_city' ).val() );
