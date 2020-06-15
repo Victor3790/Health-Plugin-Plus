@@ -24,6 +24,7 @@ class Personal_Coach_Admin_View
     $this->url_file = $url_file_view;
     $this->admin = new Pc_Admin;
     $this->customer_registration = new Pc_Customer_Registration;
+    $this->customer_registration = new Pc_Customer_Update;
     $this->user = new Pc_Ajax_Customer;
     $this->follow_up = new Pc_Follow_Up;
 

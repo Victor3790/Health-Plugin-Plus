@@ -38,5 +38,51 @@
             $('#update_supplementation').val(customer_data[0].supplementation);
             $('#update_notes').val(customer_data[0].notes);
         }
+
+        //Update customer
+        $( '#update_customer_form' ).on( 'submit', function(e) {
+            e.preventDefault();
+    
+            var updateFormData = new FormData();
+    
+            updateFormData.append( 'pc_user_id',        $( '#pc_update_customer_info' ).val() );
+            updateFormData.append( 'name',              $( '#update_name' ).val() );
+            updateFormData.append( 'mail',              $( '#update_mail' ).val() );
+            updateFormData.append( 'phone',             $( '#update_phone' ).val() );
+            updateFormData.append( 'country',           $( '#update_country' ).val() );
+            updateFormData.append( 'city',              $( '#update_city' ).val() );
+            updateFormData.append( 'start_date',        $( '#update_start-date' ).val() );
+            updateFormData.append( 'age',               $( '#update_age' ).val() );
+            updateFormData.append( 'sex',               $( 'input[name = "update_gender"]:checked' ).val() );
+            updateFormData.append( 'weight',            $( '#update_weight' ).val() );
+            updateFormData.append( 'height',            $( '#update_height' ).val() );
+            updateFormData.append( 'physical_activity', $( '#update_physical_activity' ).val() );
+            updateFormData.append( 'goal',              $( '#update_goal' ).val() );
+            updateFormData.append( 'percent',           $( '#update_percent' ).val() );
+            updateFormData.append( 'training',          $( '#update_training' ).val() );
+            updateFormData.append( 'days_week',         $( '#update_days_week' ).val() );
+            updateFormData.append( 'training_area',     $( '#update_training_area' ).val() );
+            updateFormData.append( 'sports',            $( '#update_sports' ).val() );
+            updateFormData.append( 'diet',              $( '#update_diet' ).val() );
+            updateFormData.append( 'calories',          $( '#update_calories' ).val() );
+            updateFormData.append( 'meals',             $( '#update_meals' ).val() );
+            updateFormData.append( 'intolerances',      $( '#update_intolerances' ).val() );
+            updateFormData.append( 'supplementation',   $( '#update_supplementation' ).val() );
+            updateFormData.append( 'notes',             $( '#update_notes' ).val() );
+            updateFormData.append( 'action', 'pc_customer_update' );
+    
+            $.ajax({
+                url:  ajax_customer_registration_object.ajax_url,
+                type: 'POST',
+                data: updateFormData,
+                contentType:false,
+                cache:false,
+                processData:false,
+                success:  function(data){
+                    console.log(data);
+                }
+            });
+    
+        });
     });
 })(jQuery);

@@ -1,0 +1,97 @@
+<?php
+
+/**
+ *
+ */
+class Pc_Customer_Update
+{
+
+  public function __construct()
+  {
+    add_action( 'wp_ajax_pc_customer_update', array($this, 'pc_customer_update') );
+    add_action( 'wp_ajax_nopriv_pc_customer_update', array($this, 'pc_customer_update') );
+  }
+
+  public function pc_customer_update(){
+
+    global $wpdb;
+
+    $user_id            = $_POST['pc_user_id'];
+    $name               = $_POST['name'];
+    $mail               = $_POST['mail'];
+    $phone              = $_POST['phone'];
+    $country            = $_POST['country'];
+    $city               = $_POST['city'];
+    $start_date         = $_POST['start_date'];
+    $age                = $_POST['age'];
+    $sex                = $_POST['sex'];
+    $weight             = $_POST['weight'];
+    $height             = $_POST['height'];
+    $physical_activity  = $_POST['physical_activity'];
+    $goal               = $_POST['goal'];
+    $percent            = $_POST['percent'];
+    $training           = $_POST['training'];
+    $days_week          = $_POST['days_week'];
+    $training_area      = $_POST['training_area'];
+    $sports             = $_POST['sports'];
+    $diet               = $_POST['diet'];
+    $calories           = $_POST['calories'];
+    $meals              = $_POST['meals'];
+    $intolerances       = $_POST['intolerances'];
+    $supplementation    = $_POST['supplementation'];
+    $notes              = $_POST['notes'];
+
+    $output = $wpdb->update(
+      $wpdb->prefix . 'pc_customers_tbl',
+      [
+        'name'              => $name,
+        'mail'              => $mail,
+        'phone'             => $phone,
+        'country'           => $country,
+        'city'              => $city,
+        'age'               => $age,
+        'sex'               => $sex,
+        'weight'            => $weight,
+        'height'            => $height,
+        'physical_activity' => $physical_activity,
+        'goal'              => $goal,
+        'percent'           => $percent,
+        'training'          => $training,
+        'days_week'         => $days_week,
+        'training_area'     => $training_area,
+        'sports'            => $sports,
+        'diet'              => $diet,
+        'calories'          => $calories,
+        'meals'             => $meals,
+        'intolerances'      => $intolerances,
+        'supplementation'   => $supplementation,
+        'start_date'        => $start_date,
+        'notes'             => $notes
+      ],
+      [
+        'pc_customer_id'    => $user_id ,
+      ],
+      [
+        '%s', '%s', '%s', '%d', '%s' ,
+        '%d', '%s', '%f', '%f', '%d' ,
+        '%d', '%d', '%d', '%d', '%d' ,
+        '%s', '%d', '%d', '%d', '%s' ,
+        '%s', '%s', '%s', 
+      ],
+      [
+        '%d'
+      ]
+    );
+
+    if($output === false){
+      $json_output = 'Error, intentelo más tarde';
+    }elseif($output === 0){
+      $json_output = 'No se ha modificado ningún dato, modifica algún campo';
+    }else{
+      $json_output = 'Información modificada';
+    }
+
+    wp_send_json( $json_output );
+  }
+
+}
