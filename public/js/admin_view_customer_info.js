@@ -1,30 +1,15 @@
 (function($){
   $(document).ready(function(){
+
     $( '#pc_customer_info' ).change( function() {
-      health_plugin_get_customer_info('info', $( '#pc_customer_info' ).val(), 
+      health_plugin_name_space.health_plugin_get_customer_info('info', $( '#pc_customer_info' ).val(), 
         function(result){
           on_success_customer_info(result);
         });
 
-      var pc_customer_progress = {
-        action: 'pc_get_ajax_progress',
-        pc_customer_id: $( '#pc_customer_info' ).val()
-      }
-
       $('#weights').empty();
       $('#weeks').empty();
-
-
-
-      $.ajax({
-        url:      ajax_customer_info_object.ajax_url,
-        data:     pc_customer_progress,
-        method:   'POST',
-        success:  on_success_customer_progress,
-        error:    on_error_customer_progress,
-        beforeSend:   function(){$('#info_customers_loader').show();},
-        complete:     function(){$('#info_customers_loader').hide();}
-      });
+      $('#register_customer_prev_progress_form').empty();
 
     });
 
@@ -53,14 +38,44 @@
       $('#pc_user_notes').text( customer_data[0].notes );
       $('#pc_start_date').text( customer_data[0].start_date_formatted );
       $('#pc_current_week').text( customer_data[0].current_week );
+
+      health_plugin_name_space.number_weeks = customer_data[0].current_week;
+      get_cutsomer_progress();
+    }
+
+    function get_cutsomer_progress(){
+
+      var pc_customer_progress = {
+        action: 'pc_get_ajax_progress',
+        pc_customer_id: $( '#pc_customer_info' ).val()
+      }
+
+      $.ajax({
+        url:      ajax_customer_info_object.ajax_url,
+        data:     pc_customer_progress,
+        method:   'POST',
+        success:  on_success_customer_progress,
+        error:    on_error_customer_progress,
+        beforeSend:   function(){$('#info_customers_loader').show();},
+        complete:     function(){$('#info_customers_loader').hide();}
+      });
+
     }
 
     function on_success_customer_progress( customer_progress ){
-
-      customer_progress.forEach((item) => {
-        $('#weights').append('<td class="progress_weight">' + item.weight + '</td>');
-        $('#weeks').append('<td class="progress_week">' + item.week + '</td>');
-      });
+      if( customer_progress.length === 0 && health_plugin_name_space.number_weeks > 1 ){
+        for (let i = 1; i < health_plugin_name_space.number_weeks; i++) {
+          $('#register_customer_prev_progress_form').append(`<div>semana ${i}</div>`);
+          $('#register_customer_prev_progress_form')
+            .append('<div><input id="' + i + '"type="number" class="prev_progress_weight"></div>'); 
+        }
+        $('#register_customer_prev_progress_form').append('<button class="form__button" type="submit" name="send">Registrar</button>');
+      }else{
+        customer_progress.forEach((item) => {
+          $('#weights').append('<td class="progress_weight">' + item.weight + '</td>');
+          $('#weeks').append('<td class="progress_week">' + item.week + '</td>');
+        });
+      }
 
       drawProgressChart();
     }

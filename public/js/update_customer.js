@@ -1,7 +1,7 @@
 (function($){
     $(document).ready(function(){
         $( '#pc_update_customer_info' ).change( function() {
-            health_plugin_get_customer_info('raw', $( '#pc_update_customer_info' ).val(), 
+            health_plugin_name_space.health_plugin_get_customer_info('raw', $( '#pc_update_customer_info' ).val(), 
               function(result){
                 on_success_update_customer_info(result);
               });

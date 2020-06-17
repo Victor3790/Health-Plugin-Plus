@@ -156,6 +156,10 @@
                     <tr id="weights"></tr>
                     <tr id="weeks"></tr>
                   </table>
+                  <div id="progress_customer_info_tab">
+                  <form id="register_customer_prev_progress_form">
+                  </form>
+                  </div>
                 </div>
 
                 <h3 id="pc_chart_accordion_container" class="training__header">APTITUDES</h3>

@@ -71,6 +71,8 @@ class Personal_Coach_Public {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_follow_up_registration.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_prev_follow_up_registration.php';
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_customer_view_loader.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_admin_view_loader.php';
@@ -308,6 +310,15 @@ class Personal_Coach_Public {
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
 			]
+		);
+
+		//Ajax admin progress registration script
+		wp_register_script(
+			$this->plugin_name . '_admin_progress_registration',
+			plugin_dir_url( __FILE__ ) . 'js/admin_progress_registration.js',
+			array('jquery'),
+			$this->version,
+			true
 		);
 	}
 
