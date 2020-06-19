@@ -2,6 +2,10 @@
   $(document).ready(function(){
     $( '#pc_user_follow_up' ).change( function() {
 
+      if(  $( '#pc_user_follow_up' ).val() == 0 ){
+        return;
+      }
+
       var pc_customer_follow_up = {
         action:                     'pc_get_follow_up',
         pc_customer_id_follow_up:   $( '#pc_user_follow_up' ).val()
