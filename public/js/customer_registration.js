@@ -18,6 +18,8 @@
     $( '#user_registration_form' ).on( 'submit', function(e) {
       e.preventDefault();
 
+      $('#pc_send_button').attr('disabled', true);
+
       var formData = new FormData();
 
       formData.append( 'pc_user_id',        $( '#pc_user_id_reg' ).val() );
@@ -57,7 +59,6 @@
         success:  function(data){
           $('#user_registration_status').html(data);
           $('#new_user').show();
-          $('#pc_send_button').attr('disabled', true);
         }
       });
 

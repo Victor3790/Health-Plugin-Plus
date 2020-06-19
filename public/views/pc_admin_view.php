@@ -159,6 +159,7 @@
                   <div id="progress_customer_info_tab">
                   <form id="register_customer_prev_progress_form">
                   </form>
+                  <div id="prev_prog_registration_status"></div>
                   </div>
                 </div>
 

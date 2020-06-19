@@ -2,6 +2,7 @@
   $(document).ready(function(){
     $( '#register_customer_prev_progress_form' ).on( 'submit', function(e) {
       e.preventDefault();
+      $('#reg_prev_prog').attr('disabled', true);
 
       let values = $('.prev_progress_weight');
       let info = [];
@@ -16,8 +17,6 @@
         ]
       }
 
-      console.log(info);
-
       formData.append('json_array', JSON.stringify(info));
       formData.append( 'action', 'pc_register_prev_follow_up' );
 
@@ -29,7 +28,8 @@
         cache:false,
         processData:false,
         success:  function(data){
-          console.log(data);
+          $('#prev_prog_registration_status').html(data);
+          $('#register_customer_prev_progress_form').hide();
         }
       });
 

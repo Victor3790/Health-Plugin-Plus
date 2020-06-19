@@ -2,6 +2,11 @@
   $(document).ready(function(){
 
     $( '#pc_customer_info' ).change( function() {
+
+      if(  $( '#pc_customer_info' ).val() == 0 ){
+        return;
+      }
+
       health_plugin_name_space.health_plugin_get_customer_info('info', $( '#pc_customer_info' ).val(), 
         function(result){
           on_success_customer_info(result);
@@ -10,6 +15,7 @@
       $('#weights').empty();
       $('#weeks').empty();
       $('#register_customer_prev_progress_form').empty();
+      $('#prev_prog_registration_status').empty();
 
     });
 
@@ -64,12 +70,14 @@
 
     function on_success_customer_progress( customer_progress ){
       if( customer_progress.length === 0 && health_plugin_name_space.number_weeks > 1 ){
+        $('#register_customer_prev_progress_form').show();
         for (let i = 1; i < health_plugin_name_space.number_weeks; i++) {
           $('#register_customer_prev_progress_form').append(`<div>semana ${i}</div>`);
           $('#register_customer_prev_progress_form')
             .append('<div><input id="' + i + '"type="number" class="prev_progress_weight"></div>'); 
         }
-        $('#register_customer_prev_progress_form').append('<button class="form__button" type="submit" name="send">Registrar</button>');
+        $('#register_customer_prev_progress_form')
+          .append('<button id="reg_prev_prog" class="form__button" type="submit" name="send">Registrar</button>');
       }else{
         customer_progress.forEach((item) => {
           $('#weights').append('<td class="progress_weight">' + item.weight + '</td>');
