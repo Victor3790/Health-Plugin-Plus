@@ -48,6 +48,8 @@
         //Update customer
         $( '#update_customer_form' ).on( 'submit', function(e) {
             e.preventDefault();
+
+            $('#pc_update_button').attr('disabled', true);
     
             var updateFormData = new FormData();
     
@@ -84,8 +86,17 @@
                 cache:false,
                 processData:false,
                 success:  function(data){
-                    console.log(data);
+                    $('#user_update_status').html(data);
+                    $('#new_update').show();
                 }
+            });
+
+            $('#new_update').click(function(){
+                $( '#update_customer_form')[0].reset();
+                $( '#user_update_status' ).html('');
+                $( '#new_update' ).hide();
+                $( '#pc_update_button' ).attr('disabled', false);
+                $( window ).scrollTop(90);
             });
     
         });

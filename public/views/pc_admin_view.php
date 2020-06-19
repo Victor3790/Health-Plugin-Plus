@@ -377,10 +377,10 @@
 
       <button id="pc_update_button" class="form__button" type="submit" name="send">Actualizar información</button>
     </form>
-    <div id="user_registration_status"></div>
-    <p id="new_user" style="cursor:pointer; display:none;">
+    <div id="user_update_status"></div>
+    <p id="new_update" style="cursor:pointer; display:none;">
       <b><u>
-        Registrar nuevo usuario.
+        Actualizar otro usuario.
       </u></b>
     </p>
   </div><!-- End update_customer-->
