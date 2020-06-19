@@ -23,10 +23,7 @@
 
 .follow-up__label {
   margin-top: 30px;
-}
-
-.follow-up__label::after{
-  content: "\A";
+  display: block;
 }
 
 .follow-up__fieldset{
@@ -34,6 +31,7 @@
   margin-top: 30px;
   margin-bottom: 30px;
   border: 1px solid #969696;
+  padding: 0 35px 35px 35px;
 }
 
 .form__button{

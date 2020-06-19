@@ -38,7 +38,7 @@ class Pc_Prev_Follow_Up_Registration
 
       $query .= $query_place_holders;
 
-      $wpdb->query(
+      $output = $wpdb->query(
         $wpdb->prepare($query, $query_values)
       );
 

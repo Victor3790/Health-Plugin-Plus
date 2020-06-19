@@ -30,7 +30,7 @@
       INFO_CUSTOMERS_IDS
     </form>
     <div class="tab">
-      <div id="info_customers_loader" class="loader clustomer_info_loader">
+      <div id="info_customers_loader" class="loader customer_info_loader">
         <div class="lds-dual-ring"></div>
       </div>
       <div class="container">
@@ -303,7 +303,7 @@
       <input id="update_start-date-view" class="follow-up__input" type="text" name="update_start-date-view" required><br>
       <input id="update_start-date" type="hidden" name="update_start-date">
 
-      <fieldset class="update_follow-up__fieldset">
+      <fieldset class="follow-up__fieldset">
 
         <legend>Calcular calorías a consumir.</legend>
 
