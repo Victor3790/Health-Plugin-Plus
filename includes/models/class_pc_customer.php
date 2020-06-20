@@ -199,7 +199,7 @@ class Pc_Customer
 
   }
 
-  private function pc_get_current_week( $start_date ){
+  public static function pc_get_current_week( $start_date ){
 
     $unix_time = strtotime( $start_date );
     $start_week = date( 'W', $unix_time );

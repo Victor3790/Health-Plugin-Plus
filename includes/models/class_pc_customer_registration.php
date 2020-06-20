@@ -18,7 +18,7 @@ class Pc_Customer_Registration
     require_once( ABSPATH . 'wp-admin/includes/file.php' );
     require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
-    if( $_FILES['photo'] == 0 ){
+    if( empty($_FILES) ){
       $json_output = 'Por favor selecciona una foto';
       wp_send_json( $json_output );
     }

@@ -17,7 +17,7 @@ class Pc_follow_Up_Registration
       require_once( ABSPATH . 'wp-admin/includes/file.php' );
       require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
-      if( $_FILES['photo'] == 0 ){
+      if( empty($_FILES) ){
         $json_output['message'] = 'Por favor selecciona una foto';
         $json_output['code'] = 0;
         wp_send_json( $json_output );
@@ -93,12 +93,12 @@ class Pc_follow_Up_Registration
 
       $start_date = $output[0]['start_date'];
 
-      $current_customer_week = $this->pc_get_current_week( $start_date );
+      $current_customer_week = Pc_Customer::pc_get_current_week( $start_date );
 
       return $current_customer_week;
   }
 
-  private function pc_get_current_week( $start_date ){
+  /*private function pc_get_current_week( $start_date ){
 
     $unix_time = strtotime( $start_date );
 
@@ -114,5 +114,5 @@ class Pc_follow_Up_Registration
 
     return $current_customer_week;
 
-  }
+  }*/
 }
