@@ -97,22 +97,4 @@ class Pc_follow_Up_Registration
 
       return $current_customer_week;
   }
-
-  /*private function pc_get_current_week( $start_date ){
-
-    $unix_time = strtotime( $start_date );
-
-    $start_week = date( 'W', $unix_time );
-
-    $current_year_week = date( 'W' );
-
-    if( $start_week >= $current_year_week ){
-      $current_customer_week = 1;
-    }else{
-      $current_customer_week = ( $current_year_week - $start_week ) + 1;
-    }
-
-    return $current_customer_week;
-
-  }*/
 }
