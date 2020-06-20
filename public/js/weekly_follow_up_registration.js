@@ -12,6 +12,8 @@
     $( '#follow-up_form' ).on( 'submit', function(e) {
       e.preventDefault();
 
+      $('#pc_customer_follow_up_reg').attr('disabled', true);
+
       var formData = new FormData();
 
       formData.append( 'customer_id', $( '#customer_id' ).val() );
@@ -31,11 +33,24 @@
         contentType:false,
         cache:false,
         processData:false,
-        success:  function(data){
-          console.log(data);
-        }
+        success: on_follow_up_reg_success,
+        error: on_follow_up_reg_error
       });
 
     });
+
+    function on_follow_up_reg_success( result ){
+      if( result.code === 0 ){
+        $('#follow_up_reg_status').text(result.message);
+        $('#pc_customer_follow_up_reg').attr('disabled', false);
+      }else if( result.code === 1 ){
+        $('#follow-up_form').hide();
+        $('#follow_up_reg_status').text(result.message);
+      }
+    }
+
+    function on_follow_up_reg_error(){
+      console.log('Hubo un error, por favor contacte al administrador');
+    }
   });
 })(jQuery);

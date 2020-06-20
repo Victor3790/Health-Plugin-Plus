@@ -235,9 +235,11 @@ class Personal_Coach_Customer_View
                     <label class="follow-up__label" for="photo">Adjuntar foto</label>
                     <input id="photo" type="file" name="photo" value="" required>
 
-                    <button id="pc_send_button" class="form__button" type="submit" name="send">Registrar</button>
+                    <button id="pc_customer_follow_up_reg" class="form__button" type="submit" name="send">Registrar</button>
 
                   </form>
+
+                  <div id="follow_up_reg_status"></div>
               <?php endif; ?>
             </div>
 
