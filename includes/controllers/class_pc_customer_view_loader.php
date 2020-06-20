@@ -46,11 +46,40 @@ class Personal_Coach_Customer_View
     if( !is_user_logged_in() ){
       wp_die( 'You are not logged in' );
     }
-
-    $user_id        = get_current_user_id();
-    $customer       = new Pc_Customer( $user_id, 2 );
-    $user_info      = $customer->pc_get_customer_info();
-    $user_weights   = $customer->pc_get_customer_progress();
+    
+    if( current_user_can( 'subscriber' ) ){
+      $user_id        = get_current_user_id();
+      $customer       = new Pc_Customer( $user_id, 2 );
+      $user_info      = $customer->pc_get_customer_info();
+      $user_weights   = $customer->pc_get_customer_progress();
+    } else {
+      $user_info = array();
+      $user_info[0]['user_photo'] = '';
+      $user_info[0]['height'] = '';
+      $user_info[0]['weight'] = '';
+      $user_info[0]['name'] = '';
+      $user_info[0]['mail'] = '';
+      $user_info[0]['phone'] = '';
+      $user_info[0]['country'] = '';
+      $user_info[0]['city'] = '';
+      $user_info[0]['goal'] = '';
+      $user_info[0]['age'] = '';
+      $user_info[0]['start_date_formatted'] = '';
+      $user_info[0]['training'] = '';
+      $user_info[0]['days_week'] = '';
+      $user_info[0]['area'] = '';
+      $user_info[0]['activity'] = '';
+      $user_info[0]['sports'] = '';
+      $user_info[0]['notes'] = '';
+      $user_info[0]['diet'] = '';
+      $user_info[0]['calories'] = '';
+      $user_info[0]['meals'] = '';
+      $user_info[0]['intolerances'] = '';
+      $user_info[0]['supplementation'] = '';
+      $user_info[0]['current_week'] = '';
+      $user_info[0]['percent'] = '';
+      $user_weights = array();
+    }
 
     ob_start();
     ?>
@@ -173,7 +202,11 @@ class Personal_Coach_Customer_View
             <h3 class="training__header">SEGUIMIENTO SEMANAL</h3>
             <div class="training">
               <?php
-                $most_recent = $customer->pc_get_max_follow_up_week();
+                if( current_user_can( 'subscriber' ) ){
+                  $most_recent = $customer->pc_get_max_follow_up_week();
+                }else{
+                  $most_recent = '';
+                }
                 $current     = $user_info[0]['current_week'];
               ?>
               <?php if( $current == $most_recent ): ?>
