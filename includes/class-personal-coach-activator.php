@@ -149,9 +149,6 @@ class Personal_Coach_Activator {
 				`active` BOOLEAN NOT NULL ,
 				`notes` TEXT NOT NULL ,
 				PRIMARY KEY (`pc_customer_id`) ,
-				FOREIGN KEY (`pc_user_id`)
-					REFERENCES `" . $wpdb->prefix . "users`(`ID`)
-					ON DELETE CASCADE,
 				FOREIGN KEY (`country`)
 					REFERENCES `" . $wpdb->prefix . "pc_countries_tbl`(`id`)
 					ON DELETE CASCADE,
