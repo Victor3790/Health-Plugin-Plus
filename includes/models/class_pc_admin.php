@@ -129,7 +129,8 @@ class Pc_Admin
       'SELECT
             `pc_customer_id`,
             `name`
-       FROM `' . $wpdb->prefix . 'pc_customers_tbl`'
+       FROM `' . $wpdb->prefix . 'pc_customers_tbl`
+       WHERE `active` = true'
     );
 
     return $output;
