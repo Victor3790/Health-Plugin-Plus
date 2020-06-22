@@ -111,6 +111,7 @@ class Pc_Customer_Registration
       $json_output = 'Error, intentelo más tarde';
     }else{
       $json_output = 'Usuario registrado';
+      update_user_meta($user_id, 'pc_reg', 1);
     }
 
     wp_send_json( $json_output );

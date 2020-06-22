@@ -193,6 +193,15 @@ class Personal_Coach_Activator {
 		if( $result != $table  ){
 			dbDelta( $createSQL );
 		}
+
+		$user_ids = get_users( array( 'role'=>'subscriber', 'fields'=>array( 'ID' ) ) );
+
+		foreach ($user_ids as $user_id) {
+			$meta_exists = get_user_meta( $user_id->ID, 'pc_reg' );
+			if( empty( $meta_exists ) ){
+				update_user_meta( $user_id->ID, 'pc_reg', 0 );	
+			}
+		}
 	}
 
 }

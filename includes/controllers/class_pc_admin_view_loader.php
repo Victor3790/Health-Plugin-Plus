@@ -159,7 +159,18 @@ class Personal_Coach_Admin_View
   private function echo_pc_user_ids(){
 
     ob_start();
-    $user_ids = get_users( array( 'role'=>'subscriber', 'fields'=>array( 'ID','user_email' ) ) );
+    $subscriber_ids = get_users( array( 'role'=>'subscriber', 'fields'=>array( 'ID' ) ) );
+
+    if( !empty($subscriber_ids) ){
+      foreach ($subscriber_ids as $subscriber_id) {
+        $meta_exists = get_user_meta( $subscriber_id->ID, 'pc_reg' );
+        if( empty( $meta_exists ) ){
+          update_user_meta( $subscriber_id->ID, 'pc_reg', 0 );
+        }
+      }
+    }
+
+    $user_ids = get_users( array( 'meta_key'=>'pc_reg', 'meta_value'=>0, 'fields'=>array( 'ID','user_email' ) ) );
     ?>
     <label for="user">Usuario</label>
     <select id="pc_user_id_reg" name="user" required>
