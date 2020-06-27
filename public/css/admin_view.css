@@ -2,6 +2,14 @@
 /*
 **Author: Víctor Hugo Escareño Crespo
 */
+.pc_main_div{
+  position: absolute!important;
+  left: 1vw!important;
+  width: 96vw!important;
+  min-height: 90vh!important;
+  background-color: #fff!important;
+}
+
 .personal {
   padding: 15px 0; }
 

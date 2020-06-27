@@ -1,4 +1,4 @@
-<div id="admin-tabs" style="max-width:100%; background-color:#fff;">
+<div id="admin-tabs" class="pc_main_div">
   <ul>
     <li><a href="#active_customers">Clientes activos</a></li>
     <li><a href="#customer_info">Información de clientes</a></li>
