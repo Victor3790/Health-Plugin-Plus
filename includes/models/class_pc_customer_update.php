@@ -82,11 +82,14 @@ class Pc_Customer_Update
     );
 
     if($output === false){
-      $json_output = 'Error, intentelo más tarde';
+      $json_output['message'] = 'Error, intentelo más tarde';
+      $json_output['code'] = 0;
     }elseif($output === 0){
-      $json_output = 'No se ha modificado ningún dato, modifica algún campo';
+      $json_output['message'] = 'No se ha modificado ningún dato, modifica algún campo';
+      $json_output['code'] = 0;
     }else{
-      $json_output = 'Información modificada';
+      $json_output['message'] = 'Información actualizada';
+      $json_output['code'] = 1;
     }
 
     wp_send_json( $json_output );

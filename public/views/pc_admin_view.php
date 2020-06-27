@@ -200,7 +200,7 @@
       <input id="city" class="follow-up__input" type="text" name="city" value=""required><br>
 
       <label for="start-date" class="follow-up__label">Fecha de inicio</label><br>
-      <input id="start-date-view" class="follow-up__input" type="text" name="start-date-view" required><br>
+      <input id="start-date-view" class="follow-up__input" type="text" name="start_date_view" required><br>
       <input id="start-date" type="hidden" name="start-date">
 
       <fieldset class="follow-up__fieldset">
@@ -269,7 +269,7 @@
       <input class="follow-up__input" id="supplementation" type="text" name="supplementation" value="" required><br>
 
       <label for="registration_photo" class="follow-up__label">Adjuntar foto</label><br>
-      <input class="follow-up__input" id="registration_photo" type="file" required>
+      <input class="follow-up__input" id="registration_photo" type="file" name="reg_photo" required>
 
       <label for="notes" class="follow-up__label">Notas</label><br>
       <textarea id="notes" name="notes"></textarea>
@@ -300,9 +300,9 @@
       <label for="update_city" class="follow-up__label">Ciudad</label><br>
       <input id="update_city" class="follow-up__input" type="text" name="update_city" value=""required><br>
 
-      <label for="update_start-date-view" class="follow-up__label">Fecha de inicio</label><br>
-      <input id="update_start-date-view" class="follow-up__input" type="text" name="update_start-date-view" required><br>
-      <input id="update_start-date" type="hidden" name="update_start-date">
+      <label for="update_start_date_view" class="follow-up__label">Fecha de inicio</label><br>
+      <input id="update_start_date_view" class="follow-up__input" type="text" name="update_start_date_view" required><br>
+      <input id="update_start_date" type="hidden" name="update_start_date">
 
       <fieldset class="follow-up__fieldset">
 

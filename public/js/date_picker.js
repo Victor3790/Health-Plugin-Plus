@@ -8,8 +8,8 @@
       altFormat: 'yy-mm-dd'
 	});
 	
-    $( '#update_start-date-view' ).datepicker({
-      altField:  '#update_start-date',
+    $( '#update_start_date_view' ).datepicker({
+      altField:  '#update_start_date',
       altFormat: 'yy-mm-dd'
 	});
 	
