@@ -74,7 +74,7 @@
         for (let i = 1; i < health_plugin_name_space.number_weeks; i++) {
           $('#register_customer_prev_progress_form').append(`<div>semana ${i}</div>`);
           $('#register_customer_prev_progress_form')
-            .append('<div><input id="' + i + '"type="number" class="prev_progress_weight"></div>'); 
+            .append('<div><input id="' + i + '"type="number" step=".01" class="prev_progress_weight"></div>'); 
         }
         $('#register_customer_prev_progress_form')
           .append('<button id="reg_prev_prog" class="form__button" type="submit" name="send">Registrar</button>');

@@ -8,6 +8,7 @@
     let i;
 
     for (i = 0; i < progress_data.length; i++){
+      console.log( progress_data[i].innerText );
       rows.push( [
         Number( progress_week[i].innerText ),
         Number( progress_data[i].innerText )

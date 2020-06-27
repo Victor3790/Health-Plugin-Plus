@@ -24,10 +24,13 @@ class Pc_Prev_Follow_Up_Registration
       for ($i=0; $i < $values; $i++) { 
         $query_place_holders .= '(';
         for ($j=0; $j < 3; $j++) { 
-          $query_place_holders .= '%d';
-          array_push($query_values, $weights[$i][$j]);
           if( $j < 2 ){
+            $query_place_holders .= '%d';
+            array_push($query_values, $weights[$i][$j]);
             $query_place_holders .= ',';
+          }elseif( $j == 2 ){
+            $query_place_holders .= '%f';
+            array_push($query_values, $weights[$i][$j]);
           }
         }
         $query_place_holders .= ')';

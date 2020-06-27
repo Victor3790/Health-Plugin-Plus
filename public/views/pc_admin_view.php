@@ -236,7 +236,7 @@
         </div>
 
         <label for="calories" class="follow-up__label">Calorías a consumir</label><br>
-        <input id="calories" class="follow-up__input--short" type="text" name="calories" value="" readonly required>
+        <input id="calories" class="follow-up__input--short" type="text" name="calories" value="" required>
         <p class="follow-up__input-units">Kcal.</p>
 
       </fieldset>
@@ -337,7 +337,7 @@
         </div>
 
         <label for="update_calories" class="follow-up__label">Calorías a consumir</label><br>
-        <input id="update_calories" class="follow-up__input--short" type="text" name="update_calories" value="" readonly required>
+        <input id="update_calories" class="follow-up__input--short" type="text" name="update_calories" value="" required>
         <p class="follow-up__input-units">Kcal.</p>
 
       </fieldset>
