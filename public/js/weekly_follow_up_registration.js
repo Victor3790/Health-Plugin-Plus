@@ -7,10 +7,31 @@
       photo = this.files[0];
     });
 
+        //Validate the form
+        $('#follow-up_form').validate({
+
+          rules: {
+            current_weight: {
+              required: true,
+              range: [ 9, 250 ]
+            }
+          },
+          messages: {
+            current_weight: {
+              required: 'Por favor, ingresa tu peso para esta semana.',
+              range: '¿El peso es correcto?'
+            }
+          },
+          submitHandler: function(){
+            pc_register_progress(event);
+          }
+    
+        });
+
 
     //Register the follow up
-    $( '#follow-up_form' ).on( 'submit', function(e) {
-      e.preventDefault();
+    function pc_register_progress(event){
+      event.preventDefault();
 
       $('#pc_customer_follow_up_reg').attr('disabled', true);
 
@@ -37,7 +58,7 @@
         error: on_follow_up_reg_error
       });
 
-    });
+    }
 
     function on_follow_up_reg_success( result ){
       if( result.code === 0 ){

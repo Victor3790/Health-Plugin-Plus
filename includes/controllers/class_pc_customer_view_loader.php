@@ -217,23 +217,23 @@ class Personal_Coach_Customer_View
                     <input id="customer_id" type="hidden" name="customer_id" value="<?php echo $user_info[0]['pc_customer_id']; ?>">
 
                     <label class="follow-up__label" for="current_weight">Peso actual en ayunas</label>
-                    <input id="weight" class="follow-up__input--short" type="number" name="current_weight" value="" required>
+                    <input id="weight" class="follow-up__input--short" type="float" name="current_weight" value="" required>
                     <p class="follow-up__input-units">Kg.</p>
 
                     <label class="follow-up__label" for="answer_1">¿Has tenido dificultades para seguir el plan? ¿Cuáles?</label><br>
-                    <textarea id="answer_1" name="answer_1" rows="4" cols="50" required></textarea>
+                    <textarea id="answer_1" name="answer_1" rows="4" cols="50"></textarea>
 
                     <label class="follow-up__label" for="answer_2">¿Algo que te gustaría añadir o cambiar?</label><br>
-                    <textarea id="answer_2" name="answer_2" rows="4" cols="50" required></textarea>
+                    <textarea id="answer_2" name="answer_2" rows="4" cols="50"></textarea>
 
                     <label class="follow-up__label" for="answer_3">¿Sientes especial dificultad en algún ejercicio? ¿Cuál y por qué?</label><br>
-                    <textarea id="answer_3" name="answer_3" rows="4" cols="50" required></textarea>
+                    <textarea id="answer_3" name="answer_3" rows="4" cols="50"></textarea>
 
                     <label class="follow-up__label" for="answer_3">Otras observaciones</label><br>
-                    <textarea id="answer_4" name="answer_3" rows="4" cols="50" required></textarea><br>
+                    <textarea id="answer_4" name="answer_3" rows="4" cols="50"></textarea><br>
 
                     <label class="follow-up__label" for="photo">Adjuntar foto</label>
-                    <input id="photo" type="file" name="photo" value="" required>
+                    <input id="photo" type="file" name="photo" value="">
 
                     <button id="pc_customer_follow_up_reg" class="form__button" type="submit" name="send">Registrar</button>
 
