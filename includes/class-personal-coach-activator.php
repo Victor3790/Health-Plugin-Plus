@@ -30,6 +30,8 @@ class Personal_Coach_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+
+
 		if( version_compare( get_bloginfo( 'version' ), '5.4', '<' ) ){
 			wp_die('You must update Wordpress to use this plugin');
 		}
@@ -37,61 +39,97 @@ class Personal_Coach_Activator {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		global  $wpdb;
 
-		$createSQL = "
+		if(!self::table_exists('pc_physical_activities_tbl')){
+
+			$physical_activies_q = "
 			CREATE TABLE `" . $wpdb->prefix . "pc_physical_activities_tbl` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 				`activity` VARCHAR(128) NOT NULL ,
 				PRIMARY KEY (`id`))
-				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";"."
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
+
+			ALTER TABLE `" . $wpdb->prefix . "pc_physical_activities_tbl` AUTO_INCREMENT = 1;
 
 			INSERT INTO `" . $wpdb->prefix . "pc_physical_activities_tbl` (`id`, `activity`) VALUES
 				(NULL, 'Sedentario'),
 				(NULL, 'Poco activo'),
 				(NULL, 'Moderadamente activo'),
 				(NULL, 'Ligeramente activo'),
-				(NULL, 'Activo');
+				(NULL, 'Activo'); ";
 
+			dbDelta( $physical_activies_q );
+		}
+
+		if(!self::table_exists('pc_goals_tbl')){
+
+			$goals_q = "
 			CREATE TABLE `" . $wpdb->prefix . "pc_goals_tbl` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 				`goal` VARCHAR(128) NOT NULL ,
 				PRIMARY KEY (`id`))
-				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";"."
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
+
+			ALTER TABLE `" . $wpdb->prefix . "pc_goals_tbl` AUTO_INCREMENT = 1;
 
 			INSERT INTO `" . $wpdb->prefix . "pc_goals_tbl` (`id`, `goal`) VALUES
 				(NULL, 'Perder grasa'),
 				(NULL, 'Ganar masa muscular'),
 				(NULL, 'Mejorar el rendimiento'),
-				(NULL, 'Mejorar su salud');
+				(NULL, 'Mejorar su salud');";
 
+			dbDelta( $goals_q );
+		}
+
+		if(!self::table_exists('pc_training_areas_tbl')){
+
+			$training_areas_q = "
 			CREATE TABLE `" . $wpdb->prefix . "pc_training_areas_tbl` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 				`area` VARCHAR(128) NOT NULL ,
 				PRIMARY KEY (`id`))
-				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";"."
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
+
+			ALTER TABLE `" . $wpdb->prefix . "pc_training_areas_tbl` AUTO_INCREMENT = 1;
 
 			INSERT INTO `" . $wpdb->prefix . "pc_training_areas_tbl` (`id`, `area`) VALUES
 				(NULL, 'Casa'),
 				(NULL, 'Gimnasio'),
 				(NULL, 'Crossfit'),
-				(NULL, 'Otro');
+				(NULL, 'Otro');";
 
+			dbDelta( $training_areas_q );
+		}
+
+		if(!self::table_exists('pc_diets_tbl')){
+
+			$diets_q = "
 			CREATE TABLE `" . $wpdb->prefix . "pc_diets_tbl` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 				`diet` VARCHAR(128) NOT NULL ,
 				PRIMARY KEY (`id`))
-				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";"."
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
+			
+			ALTER TABLE `" . $wpdb->prefix . "pc_diets_tbl` AUTO_INCREMENT = 1;
 
 			INSERT INTO `" . $wpdb->prefix . "pc_diets_tbl` (`id`, `diet`) VALUES
 				(NULL, 'Mediterranea'),
 				(NULL, 'Vegetariana'),
 				(NULL, 'Cetogénica'),
-				(NULL, 'Ayuno intermitente');
+				(NULL, 'Ayuno intermitente');";
 
+			dbDelta( $diets_q );
+		}
+
+		if(!self::table_exists('pc_countries_tbl')){
+
+			$countries_q = "
 			CREATE TABLE `" . $wpdb->prefix . "pc_countries_tbl` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 				`country` VARCHAR(128) NOT NULL ,
 				PRIMARY KEY (`id`))
-				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";"."
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
+
+			ALTER TABLE `" . $wpdb->prefix . "pc_countries_tbl` AUTO_INCREMENT = 1;
 
 			INSERT INTO `" . $wpdb->prefix . "pc_countries_tbl` (`id`, `country`) VALUES
 				(NULL, 'España'),
@@ -105,21 +143,34 @@ class Personal_Coach_Activator {
 				(NULL, 'Alemania'),
 				(NULL, 'Noruega'),
 				(NULL, 'Italia'),
-				(NULL, 'Ecuador');
+				(NULL, 'Ecuador');";
 
+			dbDelta( $countries_q );
+		}
+
+		if(!self::table_exists('pc_trainings_tbl')){
+
+			$trainings_q = "
 			CREATE TABLE `" . $wpdb->prefix . "pc_trainings_tbl` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 				`training` VARCHAR(128) NOT NULL ,
 				PRIMARY KEY (`id`))
-				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";"."
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
+
+			ALTER TABLE `" . $wpdb->prefix . "pc_trainings_tbl` AUTO_INCREMENT = 1;
 
 			INSERT INTO `" . $wpdb->prefix . "pc_trainings_tbl` (`id`, `training`) VALUES
 				(NULL, 'Full body'),
 				(NULL, 'Torso pierna'),
 				(NULL, 'Phat'),
-				(NULL, 'Personalizada');
+				(NULL, 'Personalizada');";
 
+			dbDelta( $trainings_q );
+		}
 
+		if(!self::table_exists('pc_customers_tbl')){
+
+			$customers_q = "
 			CREATE TABLE `" . $wpdb->prefix . "pc_customers_tbl` (
 				`pc_customer_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`pc_user_id` BIGINT(20) UNSIGNED NOT NULL UNIQUE,
@@ -168,30 +219,30 @@ class Personal_Coach_Activator {
 					REFERENCES `" . $wpdb->prefix . "pc_diets_tbl`(`id`)
 					ON DELETE CASCADE
 				)
-				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";";
 
-				CREATE TABLE `" . $wpdb->prefix . "pc_follow_up_tbl` (
-					`user_id` BIGINT(20) UNSIGNED NOT NULL ,
-					`week` TINYINT UNSIGNED NOT NULL ,
-					`weight` DECIMAL(5,2) UNSIGNED NOT NULL,
-					`answer_1` TEXT NOT NULL ,
-					`answer_2` TEXT NOT NULL ,
-					`answer_3` TEXT NOT NULL ,
-					`answer_4` TEXT NOT NULL ,
-					`photo_id` BIGINT UNSIGNED NOT NULL ,
+			dbDelta( $customers_q );
+		}
 
-					FOREIGN KEY (`user_id`)
-						REFERENCES `" . $wpdb->prefix . "pc_customers_tbl`(`pc_customer_id`)
-						ON DELETE CASCADE
-					)
-					ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";
-			";
+		if(!self::table_exists('pc_follow_up_tbl')){
+			$follow_up_q = "
+			CREATE TABLE `" . $wpdb->prefix . "pc_follow_up_tbl` (
+				`user_id` BIGINT(20) UNSIGNED NOT NULL ,
+				`week` TINYINT UNSIGNED NOT NULL ,
+				`weight` DECIMAL(5,2) UNSIGNED NOT NULL,
+				`answer_1` TEXT NOT NULL ,
+				`answer_2` TEXT NOT NULL ,
+				`answer_3` TEXT NOT NULL ,
+				`answer_4` TEXT NOT NULL ,
+				`photo_id` BIGINT UNSIGNED NOT NULL ,
 
-		$table = $wpdb->prefix . 'pc_customers_tbl';
-		$result = $wpdb->get_var( 'SHOW TABLES LIKE "' . $wpdb->prefix . 'pc_customers_tbl"' );
+				FOREIGN KEY (`user_id`)
+					REFERENCES `" . $wpdb->prefix . "pc_customers_tbl`(`pc_customer_id`)
+					ON DELETE CASCADE
+				)
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";";
 
-		if( $result != $table  ){
-			dbDelta( $createSQL );
+				dbDelta( $follow_up_q );
 		}
 
 		$user_ids = get_users( array( 'role'=>'subscriber', 'fields'=>array( 'ID' ) ) );
@@ -201,6 +252,21 @@ class Personal_Coach_Activator {
 			if( empty( $meta_exists ) ){
 				update_user_meta( $user_id->ID, 'pc_reg', 0 );	
 			}
+		}
+	}
+
+	public static function table_exists( $table_name ){
+		global  $wpdb;
+
+		$db_prefix = $wpdb->prefix;
+
+		$table = $db_prefix . $table_name;
+		$result = $wpdb->get_var( 'SHOW TABLES LIKE "' . $db_prefix . $table_name . '"' );
+
+		if( $result === $table  ){
+			return true;
+		}else{
+			return false;
 		}
 	}
 
