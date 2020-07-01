@@ -6,6 +6,7 @@
   position: absolute!important;
   left: 1vw!important;
   width: 96vw!important;
+  max-width: 96vw!important;
   min-height: 90vh!important;
   background-color: #fff!important;
 }
