@@ -27,7 +27,7 @@ class Pc_follow_Up_Registration
       $MIME_type = $file_type['type'];
   
       if( $MIME_type != 'image/jpeg' && $MIME_type != 'image/png' ){
-        $json_output['message'] = 'Hay un error con la imagen';
+        $json_output['message'] = 'Hay un error con el formato de la imagen';
         $json_output['code'] = 0;
         wp_send_json( $json_output );
       }
