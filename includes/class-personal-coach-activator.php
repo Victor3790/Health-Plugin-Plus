@@ -245,6 +245,22 @@ class Personal_Coach_Activator {
 				dbDelta( $follow_up_q );
 		}
 
+		if(!self::table_exists('pc_plan_tbl')){
+			$plan_q = "
+			CREATE TABLE `" . $wpdb->prefix . "pc_plan_tbl` (
+				`user_id` BIGINT(20) UNSIGNED NOT NULL ,
+				`comments` TEXT NOT NULL ,
+				`file_id` BIGINT UNSIGNED NOT NULL ,
+
+				FOREIGN KEY (`user_id`)
+					REFERENCES `" . $wpdb->prefix . "pc_customers_tbl`(`pc_customer_id`)
+					ON DELETE CASCADE
+				)
+				ENGINE = InnoDB " . $wpdb->get_charset_collate() . ";";
+
+				dbDelta( $plan_q );
+		}
+
 		$user_ids = get_users( array( 'role'=>'subscriber', 'fields'=>array( 'ID' ) ) );
 
 		foreach ($user_ids as $user_id) {

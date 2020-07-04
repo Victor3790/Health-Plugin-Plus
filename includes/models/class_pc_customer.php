@@ -161,6 +161,22 @@ class Pc_Customer
 
   }
 
+  public function pc_get_customer_plan(){
+
+    global $wpdb;
+
+    $query = 'SELECT
+               `comments`,
+               `file_id`
+               FROM `' . $wpdb->prefix . 'pc_plan_tbl`
+               WHERE `user_id` = ' . $this->customer_id;
+
+    $output = $wpdb->get_results( $query, 'ARRAY_A' );
+
+    return $output;
+
+  }
+
   public function pc_get_max_follow_up_week(){
     global $wpdb;
 

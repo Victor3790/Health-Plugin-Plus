@@ -46,6 +46,10 @@
       $('#pc_current_week').text( customer_data[0].current_week );
 
       health_plugin_name_space.number_weeks = customer_data[0].current_week;
+
+      $('#plan_reg_customer_id').val($( '#pc_customer_info' ).val());
+      $('#plan_reg_current_week').val(customer_data[0].current_week );
+
       get_cutsomer_progress();
     }
 
@@ -86,6 +90,8 @@
       }
 
       drawProgressChart();
+
+      $('#plan_reg').attr('disabled', false);
     }
 
     function on_error_customer_progress(){

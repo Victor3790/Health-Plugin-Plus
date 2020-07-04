@@ -52,6 +52,7 @@ class Personal_Coach_Customer_View
       $customer       = new Pc_Customer( $user_id, 2 );
       $user_info      = $customer->pc_get_customer_info();
       $user_weights   = $customer->pc_get_customer_progress();
+      $user_plan      = $customer->pc_get_customer_plan();
     } else {
       $user_info = array();
       $user_info[0]['user_photo'] = '';
@@ -263,6 +264,40 @@ class Personal_Coach_Customer_View
             <div class="training">
               <div id="pc_chart" style="width: 100%;"></div>
             </div>
+
+            <h3 id="pc_chart_accordion_container" class="training__header">PLAN</h3>
+                <div class="training">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>
+                            Descarga tu plan
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <?php 
+                              echo $user_plan[0]['comments']; 
+                            ?>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                        <td>
+                          <a href="
+                            <?php 
+                              echo wp_get_attachment_url( $user_plan[0]['file_id'] );
+                            ?>
+                          ">click para descargar plan</a>
+                        </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                </div><!-- End training -->
+
 
           </div><!-- End accordion -->
 

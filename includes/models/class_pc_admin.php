@@ -33,9 +33,9 @@ class Pc_Admin
                               array( '%d' )
                            );
 
-    if( $update === false ){
+    if( $output === false ){
       $output = 'Error, contacte al administrador';
-    }elseif ( $update === 0 ) {
+    }elseif ( $output === 0 ) {
       $output = 'El cliente no existe o ya fue eliminado';
     }else{
       $output = 'Cliente eliminado';

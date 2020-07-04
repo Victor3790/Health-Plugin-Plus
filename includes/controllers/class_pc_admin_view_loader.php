@@ -7,6 +7,7 @@ class Personal_Coach_Admin_View
   private $plugin_name;
   private $url_file;
   private $admin;
+  private $update;
   private $customer_registration;
   private $user;
   private $follow_up;
@@ -18,17 +19,20 @@ class Personal_Coach_Admin_View
   private $trainings;
   private $training_areas;
   private $diets;
+  private $plan_registration;
 
   public function __construct( $url_file_view, $plugin_name )
   {
     $this->plugin_name = $plugin_name;
     $this->url_file = $url_file_view;
+
     $this->admin = new Pc_Admin;
     $this->customer_registration = new Pc_Customer_Registration;
-    $this->customer_registration = new Pc_Customer_Update;
+    $this->customer_update = new Pc_Customer_Update;
     $this->user = new Pc_Ajax_Customer;
     $this->follow_up = new Pc_Follow_Up;
     $this->prev_follow_up_reg = new Pc_Prev_Follow_Up_Registration;
+    $this->plan_registration = new Pc_Plan_Registration;
 
     $this->customers =  $this->admin->get_pc_customers();
     $this->countries =  $this->admin->get_pc_countries();
@@ -60,6 +64,7 @@ class Personal_Coach_Admin_View
     wp_enqueue_script( $this->plugin_name . '_get_customer_info' );
     wp_enqueue_script( $this->plugin_name . '_update_customer' );
     wp_enqueue_script( $this->plugin_name . '_admin_progress_registration' );
+    wp_enqueue_script( $this->plugin_name . '_weekly_plan_registration' );
 
     //Customer info view
 

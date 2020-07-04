@@ -168,6 +168,25 @@
                   <div id="pc_chart" style="width: 100%;"></div>
                 </div>
 
+                <h3 id="pc_chart_accordion_container" class="training__header">PLAN</h3>
+                <div class="training">
+                  <form id="plan_reg_form">
+
+                    <label for="comments" class="follow-up__label">Comentarios.</label><br>
+                    <textarea id="comments" name="comments"></textarea>
+
+                    <label for="plan_file" class="follow-up__label">Adjuntar archivo</label><br>
+                    <input class="follow-up__input" id="plan_file" type="file" name="plan_file">
+
+                    <input type="hidden" id="plan_reg_customer_id" name="customer_id">
+
+                    <button disabled="disabled" id="plan_reg" class="form__button" type="submit" name="send">Registrar</button>
+
+                    <div id="reg_plan_status"></div>
+
+                  </form>
+                </div>
+
               </div><!-- End accordion -->
 
             </div><!-- End training__container -->

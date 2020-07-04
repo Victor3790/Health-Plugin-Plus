@@ -73,6 +73,8 @@ class Personal_Coach_Public {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_prev_follow_up_registration.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_plan_registration.php';
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_customer_view_loader.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_admin_view_loader.php';
@@ -306,6 +308,23 @@ class Personal_Coach_Public {
 
 		wp_localize_script(
 			$this->plugin_name . '_weekly_follow_up_registration',
+			'ajax_follow_up_reg_object',
+			[
+				'ajax_url' => admin_url( 'admin-ajax.php' )
+			]
+		);
+
+		//Ajax weekly plan registration script
+		wp_register_script(
+			$this->plugin_name . '_weekly_plan_registration',
+			plugin_dir_url( __FILE__ ) . 'js/admin_plan_reg.js',
+			array('jquery'),
+			$this->version,
+			true
+		);
+		
+		wp_localize_script(
+			$this->plugin_name . '_weekly_plan_registration',
 			'ajax_follow_up_reg_object',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
