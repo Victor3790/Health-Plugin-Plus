@@ -41,7 +41,7 @@ class Pc_Customer_Registration extends Customer_Data
       wp_send_json( $result );
     }
 
-    $valid = $this->validate_data();
+    $valid = $this->validate_data( 1 );
 
     if(!$valid){
       $json_output['message'] = 'Error, verifique los datos';

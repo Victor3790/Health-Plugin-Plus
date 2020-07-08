@@ -4,10 +4,19 @@ class Customer_Data
     /*
     *   This function validates and sanitizes 
     *   the data sent by the user.
-    *
+    *   
+    *   @ request   int (Two possible values 1 or 2) Indicates 
+    *               if the function is called from
+    *               the registration (1) or the update class (2)
     */
-    protected function validate_data(){
+    protected function validate_data( $request=NULL ){
         global $wpdb;
+
+        if( empty($request) ){
+            return false;
+        }elseif( !($request == 1 || $request == 2) ){
+            return false;
+        }
 
         if( !isset( $_POST['pc_user_id'] ) ){
             return false;
@@ -21,20 +30,24 @@ class Customer_Data
             return false;
         }
 
-        $count = $wpdb->get_var('SELECT COUNT(*) FROM ' . $wpdb->users . ' WHERE ID = ' . $_POST['pc_user_id']);
+        if( $request == 1 ){
+            $count = $wpdb->get_var('SELECT COUNT(*) FROM ' . $wpdb->users . ' WHERE ID = ' . $_POST['pc_user_id']);
 
-        if( $count != 1 ){
-            return false;
-        }
+            if( $count != 1 ){
+                return false;
+            }
+        } 
 
         if( !$this->check_text( 'name' ) ){
             return false;
         }
 
-        if( !empty( $_POST['mail'] && is_email( $_POST['mail'] ) ) ){
-            $_POST['mail'] = sanitize_email( $_POST['mail'] );
-        }else{
-            return false;
+        if( $request == 1 ){
+            if( !empty( $_POST['mail'] && is_email( $_POST['mail'] ) ) ){
+                $_POST['mail'] = sanitize_email( $_POST['mail'] );
+            }else{
+                return false;
+            }
         }
 
         if( !$this->in_range( 'country', 1, 12 ) ){

@@ -3,7 +3,7 @@
 /**
  *
  */
-class Pc_Customer_Update
+class Pc_Customer_Update extends Customer_Data
 {
 
   public function __construct()
@@ -13,6 +13,14 @@ class Pc_Customer_Update
   }
 
   public function pc_customer_update(){
+
+    $valid = $this->validate_data( 2 );
+
+    if(!$valid){
+      $json_output['message'] = 'Error, verifique los datos';
+      $json_output['code'] = 0;
+      wp_send_json( $json_output );
+    }
 
     global $wpdb;
 
