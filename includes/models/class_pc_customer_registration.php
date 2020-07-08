@@ -3,7 +3,7 @@
 /**
  *
  */
-class Pc_Customer_Registration
+class Pc_Customer_Registration extends Customer_Data
 {
 
   public function __construct()
@@ -39,6 +39,14 @@ class Pc_Customer_Registration
       $result['message'] = $photo_id->get_error_message();
       $result['code'] = 0;
       wp_send_json( $result );
+    }
+
+    $valid = $this->validate_data();
+
+    if(!$valid){
+      $json_output['message'] = 'Error, verifique los datos';
+      $json_output['code'] = 0;
+      wp_send_json( $json_output );
     }
 
     global $wpdb;
