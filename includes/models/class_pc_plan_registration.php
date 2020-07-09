@@ -47,12 +47,12 @@ class Pc_Plan_Registration
         $comments     = $_POST['comments'];
         $plan         = $plan_id;
 
-        $delete = $this->pc_delete_old_plan( $customer_id );
+        /*$delete = $this->pc_delete_old_plan( $customer_id );
         if($delete === 0){
           $json_output['message'] = 'Ha habido un error grave, contacte al administrador';
           $json_output['code']    = 0;
           wp_send_json($json_output);
-        }
+        }*/
 
         $output = $wpdb->insert(
           $wpdb->prefix . 'pc_plan_tbl',

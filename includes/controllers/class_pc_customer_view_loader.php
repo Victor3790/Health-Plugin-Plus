@@ -51,7 +51,7 @@ class Personal_Coach_Customer_View
       $customer       = new Pc_Customer( $user_id, 2 );
       $user_info      = $customer->pc_get_customer_info();
       $user_weights   = $customer->pc_get_customer_progress();
-      $user_plan      = $customer->pc_get_customer_plan();
+      $user_plans      = $customer->pc_get_customer_plan();
     } else {
       $user_info = array();
       $user_info[0]['user_photo'] = '';
@@ -266,6 +266,7 @@ class Personal_Coach_Customer_View
 
             <h3 id="pc_chart_accordion_container" class="training__header">PLAN</h3>
                 <div class="training">
+                <?php foreach($user_plans as $plan): ?>
                     <table>
                       <thead>
                         <tr>
@@ -278,7 +279,7 @@ class Personal_Coach_Customer_View
                         <tr>
                           <td>
                             <?php 
-                              echo $user_plan[0]['comments']; 
+                              echo $plan['comments']; 
                             ?>
                           </td>
                         </tr>
@@ -288,13 +289,14 @@ class Personal_Coach_Customer_View
                         <td>
                           <a href="
                             <?php 
-                              echo wp_get_attachment_url( $user_plan[0]['file_id'] );
+                              echo wp_get_attachment_url( $plan['file_id'] );
                             ?>
                           ">click para descargar plan</a>
                         </td>
                         </tr>
                       </tfoot>
                     </table>
+                <?php endforeach; ?>
                 </div><!-- End training -->
 
 
