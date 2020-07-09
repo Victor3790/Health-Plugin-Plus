@@ -1,3 +1,4 @@
+<div class="pc_container_main_div">
 <div id="admin-tabs" class="pc_main_div">
   <ul>
     <li><a href="#active_customers">Clientes activos</a></li>
@@ -418,3 +419,4 @@
   </div><!-- End weekly_follow_up -->
 
 </div><!-- End admin-tabs -->
+</div><!-- End pc_container_main_div -->

@@ -7,7 +7,13 @@
   left: 1vw!important;
   width: 96vw!important;
   max-width: 96vw!important;
-  min-height: 90vh!important;
+  min-height: 1500px!important;
+  background-color: #fff!important;
+}
+
+.pc_container_main_div{
+  width: 100%!important;
+  min-height: 1500px!important;
   background-color: #fff!important;
 }
 
