@@ -2,16 +2,19 @@
 /**
  *
  */
-class Pc_follow_Up_Registration
+class Pc_follow_Up_Registration extends Customer_Data
 {
 
   public function __construct()
   {
     add_action( 'wp_ajax_pc_register_follow_up', array($this, 'pc_register_follow_up') );
-    add_action( 'wp_ajax_nopriv_pc_register_follow_up', array($this, 'pc_register_follow_up') );
   }
 
   public function pc_register_follow_up(){
+      if( !current_user_can('administrator')){
+        $output = 'Error, not enough permission level';
+        wp_send_json($output);
+      }
 
       require_once( ABSPATH . 'wp-admin/includes/image.php' );
       require_once( ABSPATH . 'wp-admin/includes/file.php' );
@@ -38,6 +41,42 @@ class Pc_follow_Up_Registration
         $json_output['message'] = $photo_id->get_error_message();
         $json_output['code'] = 0;
         wp_send_json( $json_output );
+      }
+
+      if( !$this::check_id('customer_id') ){
+        $json_output['message'] = 'Error 001, intentelo más tarde';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
+      }
+
+      if( !$this::in_range( 'weight', 9, 200 ) ){
+        $json_output['message'] = 'Error 002, intentelo más tarde';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
+      }
+
+      if( !$this::check_text( 'answer_1' ) ){
+        $json_output['message'] = 'Error 003, intentelo más tarde';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
+      }
+
+      if( !$this::check_text( 'answer_2' ) ){
+        $json_output['message'] = 'Error 004, intentelo más tarde';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
+      }
+
+      if( !$this::check_text( 'answer_3' ) ){
+        $json_output['message'] = 'Error 005, intentelo más tarde';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
+      }
+
+      if( !$this::check_text( 'answer_4' ) ){
+        $json_output['message'] = 'Error 006, intentelo más tarde';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
       }
 
       global $wpdb;

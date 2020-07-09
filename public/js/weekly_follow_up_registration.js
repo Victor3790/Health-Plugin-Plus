@@ -62,11 +62,9 @@
 
     function on_follow_up_reg_success( result ){
       if( result.code === 0 ){
-        console.log(result);
         $('#follow_up_reg_status').text(result.message);
         $('#pc_customer_follow_up_reg').attr('disabled', false);
       }else if( result.code === 1 ){
-        console.log(result);
         $('#follow-up_form').hide();
         $('#follow_up_reg_status').text(result.message);
       }

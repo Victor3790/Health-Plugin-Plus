@@ -57,11 +57,11 @@ class Personal_Coach_Public {
 	}
 
 	private function load_dependencies(){
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer_data.php';
+		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_admin.php';
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer_data.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer_registration.php';
 

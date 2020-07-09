@@ -18,15 +18,7 @@ class Customer_Data
             return false;
         }
 
-        if( !isset( $_POST['pc_user_id'] ) ){
-            return false;
-        }
-
-        if( intval($_POST['pc_user_id']) == 0 ){
-            return false;
-        }
-
-        if( $_POST['pc_user_id'] < 0){
+        if( !$this->check_id('pc_user_id') ){
             return false;
         }
 
@@ -134,7 +126,23 @@ class Customer_Data
 
     }
 
-    private function check_text( $key ){
+    protected function check_id( $key ){
+        if( !isset( $_POST[$key] ) ){
+            return false;
+        }
+
+        if( intval($_POST[$key]) == 0 ){
+            return false;
+        }
+
+        if( $_POST[$key] < 0){
+            return false;
+        }
+
+        return true;
+    }
+
+    protected function check_text( $key ){
         if( isset( $_POST[$key] ) ){
             $_POST[$key] = sanitize_text_field( $_POST[$key] );
             if( empty( $_POST[$key] ) ){
@@ -147,7 +155,7 @@ class Customer_Data
         }
     }
 
-    private function in_range( $key, $first=0, $last=1 ){
+    protected function in_range( $key, $first=0, $last=1 ){
         if( !empty( $_POST[$key] ) ){
             if( !($_POST[$key] >= $first && $_POST[$key] <= $last) ){
                 return false;

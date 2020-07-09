@@ -8,7 +8,6 @@ class Pc_Prev_Follow_Up_Registration
   public function __construct()
   {
     add_action( 'wp_ajax_pc_register_prev_follow_up', array($this, 'pc_register_prev_follow_up') );
-    add_action( 'wp_ajax_nopriv_pc_register_prev_follow_up', array($this, 'pc_register_prev_follow_up') );
   }
 
   public function pc_register_prev_follow_up(){

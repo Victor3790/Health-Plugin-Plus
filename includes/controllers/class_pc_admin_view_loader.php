@@ -66,6 +66,10 @@ class Personal_Coach_Admin_View
     wp_enqueue_script( $this->plugin_name . '_admin_progress_registration' );
     wp_enqueue_script( $this->plugin_name . '_weekly_plan_registration' );
 
+    if( !current_user_can('administrator')){
+      wp_die( 'Sorry, you are not an admin.' );
+    }
+
     //Customer info view
 
     $admin_view_template  = file_get_contents( $this->url_file, true );

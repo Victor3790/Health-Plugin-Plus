@@ -9,10 +9,13 @@ class Pc_Customer_Update extends Customer_Data
   public function __construct()
   {
     add_action( 'wp_ajax_pc_customer_update', array($this, 'pc_customer_update') );
-    add_action( 'wp_ajax_nopriv_pc_customer_update', array($this, 'pc_customer_update') );
   }
 
   public function pc_customer_update(){
+    if( !current_user_can('administrator')){
+      $output = 'Error, not enough permission level';
+      wp_send_json($output);
+    }
 
     $valid = $this->validate_data( 2 );
 

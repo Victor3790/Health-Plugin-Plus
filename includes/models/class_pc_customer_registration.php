@@ -9,10 +9,13 @@ class Pc_Customer_Registration extends Customer_Data
   public function __construct()
   {
     add_action( 'wp_ajax_pc_user_registration', array($this, 'pc_register_customer') );
-    add_action( 'wp_ajax_nopriv_pc_user_registration', array($this, 'pc_register_customer') );
   }
 
   public function pc_register_customer(){
+    if( !current_user_can('administrator')){
+      $output = 'Error, not enough permission level';
+      wp_send_json($output);
+    }
 
     require_once( ABSPATH . 'wp-admin/includes/image.php' );
     require_once( ABSPATH . 'wp-admin/includes/file.php' );

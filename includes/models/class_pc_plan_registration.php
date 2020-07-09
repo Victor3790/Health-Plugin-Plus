@@ -12,6 +12,11 @@ class Pc_Plan_Registration
         require_once( ABSPATH . 'wp-admin/includes/image.php' );
         require_once( ABSPATH . 'wp-admin/includes/file.php' );
         require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+        if( !current_user_can('administrator')){
+          $output = 'Error, not enough permission level';
+          wp_send_json($output);
+        }
   
         if( empty($_FILES) ){
           $json_output['message'] = 'Por favor selecciona una archivo';

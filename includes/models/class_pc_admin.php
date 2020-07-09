@@ -2,28 +2,34 @@
 /**
  * Gets all the information that the admin needs
  */
-class Pc_Admin
+class Pc_Admin extends Customer_Data
 {
 
   public function __construct()
   {
     add_action( 'wp_ajax_pc_get_active_customers', array($this, 'get_pc_active_customers') );
-    add_action( 'wp_ajax_nopriv_pc_get_active_customers', array($this, 'get_pc_active_customers') );
 
     add_action( 'wp_ajax_pc_inactivate_customer', array($this, 'pc_inactivate_customer') );
-    add_action( 'wp_ajax_nopriv_pc_inactivate_customer', array($this, 'pc_inactivate_customer') );
 
     add_action( 'wp_ajax_pc_get_inactive_customers', array($this, 'get_pc_inactive_customers') );
-    add_action( 'wp_ajax_nopriv_pc_get_inactive_customers', array($this, 'get_pc_inactive_customers') );
 
     add_action( 'wp_ajax_pc_activate_customer', array($this, 'pc_activate_customer') );
-    add_action( 'wp_ajax_nopriv_pc_activate_customer', array($this, 'pc_activate_customer') );
 
     add_action( 'wp_ajax_pc_delete_customer', array($this, 'pc_delete_customer') );
-    add_action( 'wp_ajax_nopriv_pc_delete_customer', array($this, 'pc_delete_customer') );
   }
 
   public function pc_delete_customer(){
+
+    if( !current_user_can('administrator')){
+      $output = 'Error, not enough permission level';
+      wp_send_json($output);
+    }
+
+    if( !$this::check_id('pc_customer_id') ){
+      $output = 'Error, contacte al administrador';
+      wp_send_json($output);
+    }
+
     global $wpdb;
 
     $customer_id = $_POST['pc_customer_id'];
@@ -61,6 +67,15 @@ class Pc_Admin
   }
 
   public function pc_inactivate_customer(){
+    if( !current_user_can('administrator')){
+      $output = 'Error, not enough permission level';
+      wp_send_json($output);
+    }
+
+    if( !$this::check_id('pc_customer_id') ){
+      $output = 'Error, contacte al administrador';
+      wp_send_json($output);
+    }
 
     global $wpdb;
 
@@ -84,6 +99,15 @@ class Pc_Admin
   }
 
   public function pc_activate_customer(){
+    if( !current_user_can('administrator')){
+      $output = 'Error, not enough permission level';
+      wp_send_json($output);
+    }
+
+    if( !$this::check_id('pc_customer_id') ){
+      $output = 'Error, contacte al administrador';
+      wp_send_json($output);
+    }
 
     global $wpdb;
 

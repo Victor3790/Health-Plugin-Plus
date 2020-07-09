@@ -42,7 +42,6 @@ class Personal_Coach_Customer_View
   }
 
   private function echo_customer_info(){
-
     if( !is_user_logged_in() ){
       wp_die( 'You are not logged in' );
     }

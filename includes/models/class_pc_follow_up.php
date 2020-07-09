@@ -2,17 +2,22 @@
 /**
  * Get the Weekly follow up for a user (Ajax)
  */
-class Pc_Follow_Up
+class Pc_Follow_Up extends Customer_Data
 {
   private $customer_id;
 
   public function __construct()
   {
     add_action( 'wp_ajax_pc_get_follow_up', array($this, 'pc_get_follow_up') );
-    add_action( 'wp_ajax_nopriv_pc_get_follow_up', array($this, 'pc_get_follow_up') );
   }
 
   public function pc_get_follow_up(){
+
+    if( !$this::check_id('pc_customer_id_follow_up') ){
+      $output = 'Error, contacte al administrador';
+      wp_send_json($output);
+    }
+
     global $wpdb;
 
     $this->customer_id = $_POST['pc_customer_id_follow_up'];
