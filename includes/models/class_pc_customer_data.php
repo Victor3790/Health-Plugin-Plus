@@ -131,7 +131,9 @@ class Customer_Data
             return false;
         }
 
-        if( intval($_POST[$key]) == 0 ){
+        $_POST[$key] = intval($_POST[$key]);
+
+        if( $_POST[$key] == 0 ){
             return false;
         }
 
@@ -150,6 +152,15 @@ class Customer_Data
             }else{
                 return true;
             }
+        }else{
+            return false;
+        }
+    }
+
+    protected function check_text_no_strict( $key ){
+        if( isset( $_POST[$key] ) ){
+            $_POST[$key] = sanitize_text_field( $_POST[$key] );
+            return true;
         }else{
             return false;
         }

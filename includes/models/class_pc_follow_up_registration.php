@@ -17,31 +17,29 @@ class Pc_follow_Up_Registration extends Customer_Data
         wp_send_json($json_output);
       }
 
-      require_once( ABSPATH . 'wp-admin/includes/image.php' );
-      require_once( ABSPATH . 'wp-admin/includes/file.php' );
-      require_once( ABSPATH . 'wp-admin/includes/media.php' );
+      $photo_id = ' ';
 
-      if( empty($_FILES) ){
-        $json_output['message'] = 'Por favor selecciona una foto';
-        $json_output['code'] = 0;
-        wp_send_json( $json_output );
-      }
-  
-      $file_type = wp_check_filetype( $_FILES['photo']['name'] );
-      $MIME_type = $file_type['type'];
-  
-      if( $MIME_type != 'image/jpeg' && $MIME_type != 'image/png' ){
-        $json_output['message'] = 'Hay un error con el formato de la imagen';
-        $json_output['code'] = 0;
-        wp_send_json( $json_output );
-      }
-  
-      $photo_id = media_handle_upload( 'photo', 0 );
-  
-      if( is_wp_error( $photo_id ) ) {
-        $json_output['message'] = $photo_id->get_error_message();
-        $json_output['code'] = 0;
-        wp_send_json( $json_output );
+      if( !empty($_FILES) ){
+        require_once( ABSPATH . 'wp-admin/includes/image.php' );
+        require_once( ABSPATH . 'wp-admin/includes/file.php' );
+        require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+        $file_type = wp_check_filetype( $_FILES['photo']['name'] );
+        $MIME_type = $file_type['type'];
+    
+        if( $MIME_type != 'image/jpeg' && $MIME_type != 'image/png' ){
+          $json_output['message'] = 'Hay un error con el formato de la imagen';
+          $json_output['code'] = 0;
+          wp_send_json( $json_output );
+        }
+    
+        $photo_id = media_handle_upload( 'photo', 0 );
+    
+        if( is_wp_error( $photo_id ) ) {
+          $json_output['message'] = $photo_id->get_error_message();
+          $json_output['code'] = 0;
+          wp_send_json( $json_output );
+        }
       }
 
       if( !$this::check_id('customer_id') ){
@@ -56,25 +54,25 @@ class Pc_follow_Up_Registration extends Customer_Data
         wp_send_json($json_output);
       }
 
-      if( !$this::check_text( 'answer_1' ) ){
+      if( !$this::check_text_no_strict( 'answer_1' ) ){
         $json_output['message'] = 'Error 003, intentelo más tarde';
         $json_output['code'] = 0;
         wp_send_json($json_output);
       }
 
-      if( !$this::check_text( 'answer_2' ) ){
+      if( !$this::check_text_no_strict( 'answer_2' ) ){
         $json_output['message'] = 'Error 004, intentelo más tarde';
         $json_output['code'] = 0;
         wp_send_json($json_output);
       }
 
-      if( !$this::check_text( 'answer_3' ) ){
+      if( !$this::check_text_no_strict( 'answer_3' ) ){
         $json_output['message'] = 'Error 005, intentelo más tarde';
         $json_output['code'] = 0;
         wp_send_json($json_output);
       }
 
-      if( !$this::check_text( 'answer_4' ) ){
+      if( !$this::check_text_no_strict( 'answer_4' ) ){
         $json_output['message'] = 'Error 006, intentelo más tarde';
         $json_output['code'] = 0;
         wp_send_json($json_output);

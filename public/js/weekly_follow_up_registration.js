@@ -61,17 +61,19 @@
     }
 
     function on_follow_up_reg_success( result ){
-      if( result.code === 0 ){
+      if( result.code == 0 ){
         $('#follow_up_reg_status').text(result.message);
         $('#pc_customer_follow_up_reg').attr('disabled', false);
-      }else if( result.code === 1 ){
+      }else if( result.code == 1 ){
         $('#follow-up_form').hide();
         $('#follow_up_reg_status').text(result.message);
       }
     }
 
     function on_follow_up_reg_error(){
-      console.log('Hubo un error, por favor contacte al administrador');
+      error_message = 'Hubo un error, por favor contacte al administrador';
+      $('#pc_customer_follow_up_reg').attr('disabled', false);
+      $('#follow_up_reg_status').text(error_message);
     }
   });
 })(jQuery);
