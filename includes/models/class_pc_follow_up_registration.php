@@ -11,9 +11,10 @@ class Pc_follow_Up_Registration extends Customer_Data
   }
 
   public function pc_register_follow_up(){
-      if( !current_user_can('administrator')){
-        $output = 'Error, not enough permission level';
-        wp_send_json($output);
+      if( !current_user_can('subscriber')){
+        $json_output['message'] = 'Error, contacte al administrador';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
       }
 
       require_once( ABSPATH . 'wp-admin/includes/image.php' );
