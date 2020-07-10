@@ -194,6 +194,8 @@
                     <label class="follow-up__label" for="photo">Adjuntar foto</label>
                     <input id="photo" type="file" name="photo" value="">
 
+                    <?php wp_nonce_field('pc_register_follow_up', 'customer_form') ?>
+
                     <button id="pc_customer_follow_up_reg" class="form__button" type="submit" name="send">Registrar</button>
 
                   </form>

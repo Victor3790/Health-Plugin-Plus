@@ -303,15 +303,15 @@ class Personal_Coach_Public {
 
 		//Ajax weekly follow up registration script
 		wp_register_script(
-			$this->plugin_name . '_weekly_follow_up_registration',
-			plugin_dir_url( __FILE__ ) . 'js/weekly_follow_up_registration.js',
+			$this->plugin_name . '_customer_follow_up_registration',
+			plugin_dir_url( __FILE__ ) . 'js/customer_follow_up_registration.js',
 			array('jquery'),
 			$this->version,
 			true
 		);
 
 		wp_localize_script(
-			$this->plugin_name . '_weekly_follow_up_registration',
+			$this->plugin_name . '_customer_follow_up_registration',
 			'ajax_follow_up_reg_object',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' )
@@ -353,7 +353,7 @@ class Personal_Coach_Public {
 	public function register_shortcodes() {
 		//Shortcodes
 		$customer_view_file		= plugin_dir_path( __FILE__ ) . 'views/pc_customer_view.php';
-		$admin_view_file 			= plugin_dir_url( __FILE__ ) . 'views/pc_admin_view.php';
+		$admin_view_file 			= plugin_dir_path( __FILE__ ) . 'views/pc_admin_view.php';
 
 		$pc_customer_view 		= new Personal_Coach_Customer_View(
 																															$customer_view_file,

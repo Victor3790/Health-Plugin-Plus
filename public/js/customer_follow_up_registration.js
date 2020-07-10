@@ -37,15 +37,16 @@
 
       var formData = new FormData();
 
-      formData.append( 'customer_id', $( '#customer_id' ).val() );
-      formData.append( 'week',        $( '#week' ).val() );
-      formData.append( 'weight',      $( '#weight' ).val() );
-      formData.append( 'answer_1',    $( '#answer_1' ).val() );
-      formData.append( 'answer_2',    $( '#answer_2' ).val() );
-      formData.append( 'answer_3',    $( '#answer_3' ).val() );
-      formData.append( 'answer_4',    $( '#answer_4' ).val() );
-      formData.append( 'photo',       photo );
-      formData.append( 'action',      'pc_register_follow_up' );
+      formData.append( 'customer_id',   $( '#customer_id' ).val() );
+      formData.append( 'week',          $( '#week' ).val() );
+      formData.append( 'weight',        $( '#weight' ).val() );
+      formData.append( 'answer_1',      $( '#answer_1' ).val() );
+      formData.append( 'answer_2',      $( '#answer_2' ).val() );
+      formData.append( 'answer_3',      $( '#answer_3' ).val() );
+      formData.append( 'answer_4',      $( '#answer_4' ).val() );
+      formData.append( 'photo',         photo );
+      formData.append( 'action',        'pc_register_follow_up' );
+      formData.append( 'customer_form', $( '#customer_form' ).val() );
 
       $.ajax({
         url:  ajax_follow_up_reg_object.ajax_url,
@@ -65,8 +66,10 @@
         $('#follow_up_reg_status').text(result.message);
         $('#pc_customer_follow_up_reg').attr('disabled', false);
       }else if( result.code == 1 ){
+        alert(result.message);
         $('#follow-up_form').hide();
         $('#follow_up_reg_status').text(result.message);
+        $("html, body").animate({scrollTop: 0}, 100);
       }
     }
 

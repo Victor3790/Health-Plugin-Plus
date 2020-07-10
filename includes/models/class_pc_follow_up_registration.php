@@ -17,6 +17,18 @@ class Pc_follow_Up_Registration extends Customer_Data
         wp_send_json($json_output);
       }
 
+      if( ! isset($_POST['customer_form']) ){
+        $json_output['message'] = 'Nonce error 001, contacte al administrador';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
+      }
+
+      if( ! wp_verify_nonce( $_POST['customer_form'], 'pc_register_follow_up' ) ){
+        $json_output['message'] = 'Nonce error 002, contacte al administrador';
+        $json_output['code'] = 0;
+        wp_send_json($json_output);
+      }
+
       $photo_id = ' ';
 
       if( !empty($_FILES) ){

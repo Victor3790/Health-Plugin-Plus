@@ -32,7 +32,7 @@ if(!class_exists('Personal_Coach_Customer_View'))
       wp_enqueue_script( $this->plugin_name . '_pc_form_validator' );
       wp_enqueue_script( $this->plugin_name . '_google_charts' );
       wp_enqueue_script( $this->plugin_name . '_pc_charts' );
-      wp_enqueue_script( $this->plugin_name . '_weekly_follow_up_registration' );
+      wp_enqueue_script( $this->plugin_name . '_customer_follow_up_registration' );
 
       $user_view = $this->load_view( $this->url_file);
 

@@ -9,7 +9,7 @@
   max-width: 96vw!important;
   min-height: 1500px!important;
   background-color: #fff!important;
-  z-index: 9999999!important;
+  z-index: 4!important;
 }
 
 .pc_container_main_div{
@@ -67,6 +67,13 @@
 
 .progress_week{
   display: none;
+}
+
+.progress_weight{
+  display:block;
+  width: 90px;
+  float:left;
+  margin: 0;
 }
 
 .tab{
