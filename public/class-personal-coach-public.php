@@ -57,6 +57,8 @@ class Personal_Coach_Public {
 	}
 
 	private function load_dependencies(){
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class_loader.php';
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer_data.php';
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer.php';
@@ -67,8 +69,6 @@ class Personal_Coach_Public {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_customer_update.php';
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_ajax_customer.php';
-
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_follow_up.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_follow_up_registration.php';
@@ -78,6 +78,8 @@ class Personal_Coach_Public {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/models/class_pc_plan_registration.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_customer_view_loader.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_ajax_customer.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controllers/class_pc_admin_view_loader.php';
 	}
@@ -350,7 +352,7 @@ class Personal_Coach_Public {
 	 */
 	public function register_shortcodes() {
 		//Shortcodes
-		$customer_view_file		= plugin_dir_url( __FILE__ ) . 'views/pc_customer_view.php';
+		$customer_view_file		= plugin_dir_path( __FILE__ ) . 'views/pc_customer_view.php';
 		$admin_view_file 			= plugin_dir_url( __FILE__ ) . 'views/pc_admin_view.php';
 
 		$pc_customer_view 		= new Personal_Coach_Customer_View(
